@@ -1,54 +1,20 @@
-<header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
-    <div class="container">
-      <img src="/assets/cml_logo.png" width="50px" height="40px">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/tests']"
-              >Tests</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/about']"
-              >About</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+<div class="menu-bar box-shadow">
+
+  <button mat-mini-fab color="primary" class="cml-logo">CML</button>
+
+  <div class="menu-tabs">
+    <button mat-button [routerLink]="['/']">Home</button>
+    <button mat-button [routerLink]="['/tests']">Tests</button>
+    <button mat-button [routerLink]="['/about']">About</button>
+  </div>
+
+  <div class="search-bar">
+    <mat-form-field appearance="fill">
+      <button mat-icon-button matPrefix><mat-icon>search</mat-icon></button>
+      <mat-label>Search tests...</mat-label>
+      <input matInput type="text" [(ngModel)]="searchText">
+      <button mat-icon-button matSuffix *ngIf="searchText" (click)="searchText=''"><mat-icon>clear</mat-icon></button>
+    </mat-form-field>
+  </div>
+
+</div>
