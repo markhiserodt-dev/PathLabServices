@@ -1,0 +1,47 @@
+.body {
+    width: 100%;
+    display: flex;
+    min-height: 700px;
+
+    .main {
+        width: 75%;
+        padding: 20px 50px 5px 50px;
+        border-right: 1px solid grey;
+    
+        .image {
+            padding-bottom: 20px;
+    
+            img {
+                width: 100%;
+            }
+        }
+    
+        .info {
+
+            h4 {
+                text-align: center;
+            }
+        }
+    }
+
+    .feature-block {
+        width: 25%;
+    
+        h4 {
+            text-align: center;
+            border-bottom: solid 1px grey;
+            margin-left: 40px;
+            padding-bottom: 10px;
+        }
+
+        .feature-links {
+            padding-left: 20px;
+            line-height: 2em;
+
+            a:hover {
+                color: #1dcacaf6;
+                cursor: pointer;
+            }
+        }
+    }
+}
