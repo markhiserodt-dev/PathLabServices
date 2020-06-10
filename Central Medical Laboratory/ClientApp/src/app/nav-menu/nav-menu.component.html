@@ -10,10 +10,10 @@
 
   <div class="search-bar">
     <mat-form-field appearance="fill">
-      <button mat-icon-button matPrefix><mat-icon>search</mat-icon></button>
+      <button mat-icon-button matSuffix (click)="searchText=''" [disabled]="!searchText" class="mat-form-field-suffix"><mat-icon class="mat-icon">{{searchText ? "clear" : "" }}</mat-icon></button>
       <mat-label>Search tests...</mat-label>
       <input matInput type="text" [(ngModel)]="searchText">
-      <button mat-icon-button matSuffix *ngIf="searchText" (click)="searchText=''"><mat-icon>clear</mat-icon></button>
+      <button mat-icon-button matSuffix class="mat-form-field-suffix"><mat-icon class="mat-icon">search</mat-icon></button>
     </mat-form-field>
   </div>
 

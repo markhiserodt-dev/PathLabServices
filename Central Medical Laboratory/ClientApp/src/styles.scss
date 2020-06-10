@@ -12,19 +12,28 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$cml-primary: mat-palette($mat-light-blue);
-$cml-accent: mat-palette($mat-orange, A200, A100, A400);
+$primary-palette: mat-palette($mat-light-blue);
+$accent-palette: mat-palette($mat-orange, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$cml-warn: mat-palette($mat-red);
+$warn-palette: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$cml-theme: mat-light-theme($cml-primary, $cml-accent, $cml-warn);
+$custom-theme: mat-light-theme($primary-palette, $accent-palette, $warn-palette);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($cml-theme);
+@include angular-material-theme($custom-theme);
+
+$primary: map-get($mat-light-blue, A200);
+$primary-light: map-get($mat-light-blue, A100);
+$primary-dark: map-get($mat-light-blue, A700);
+
+$accent: map-get($mat-orange, A200);
+$accent-light: map-get($mat-orange, A100);
+$accent-dark: map-get($mat-orange, A700);
+
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -43,5 +52,5 @@ code {
   border-color: #1861ac;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

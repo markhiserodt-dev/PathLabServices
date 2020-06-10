@@ -1,0 +1,21 @@
+.about {
+    display: flex;
+    width: 100%;
+    padding-top: 20px;
+
+    .about-info {
+        width: 75%;
+        padding-right: 60px;
+        border-right: solid 1px grey;
+    }
+
+    .about-learn {
+        width: 25%;
+        padding-left: 60px;
+
+        h6 {
+            text-align: center;
+        }
+    }
+}
+
