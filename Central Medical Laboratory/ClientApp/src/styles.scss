@@ -12,8 +12,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$primary-palette: mat-palette($mat-light-blue);
-$accent-palette: mat-palette($mat-orange, A200, A100, A400);
+$primary-palette: mat-palette($mat-blue);
+$accent-palette: mat-palette($mat-red);
 
 // The warn palette is optional (defaults to red).
 $warn-palette: mat-palette($mat-red);
@@ -26,31 +26,18 @@ $custom-theme: mat-light-theme($primary-palette, $accent-palette, $warn-palette)
 // that you are using.
 @include angular-material-theme($custom-theme);
 
-$primary: map-get($mat-light-blue, A200);
-$primary-light: map-get($mat-light-blue, A100);
-$primary-dark: map-get($mat-light-blue, A700);
+$primary-color: map-get($mat-blue, 700);
+$primary-color-light: scale-color($primary-color, $lightness: 50%);
+$primary-color-dark: scale-color($primary-color, $lightness: -50%);
 
-$accent: map-get($mat-orange, A200);
-$accent-light: map-get($mat-orange, A100);
-$accent-dark: map-get($mat-orange, A700);
+$accent-color: map-get($accent-palette, 700);
+$accent-color-light: scale-color($accent-color, $lightness: 50%);
+$accent-color-dark: scale-color($accent-color, $lightness: -20%);
 
-
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-code {
-  color: #e01a76;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
+$primary-color-text: #ffffff;
+$primary-text-color: #212121;
+$secondary-text-color: #757575;
+$divider-color: #bdbdbd;
 
 // html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

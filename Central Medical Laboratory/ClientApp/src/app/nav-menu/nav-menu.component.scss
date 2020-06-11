@@ -1,6 +1,4 @@
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
+@import '../../styles';
 
 .menu-bar {
   width: 100%;
@@ -8,23 +6,36 @@
   display: flex;
   position: sticky;
   top: 0;
-  background-color: white;
+  background-color: $primary-color-dark;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14), 
+              0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
   .cml-logo {
     margin: 20px 10px 20px 30px;
+    color: $primary-color-text;
   }
 
   .menu-tabs {
-    margin: 20px 10px 20px 10px;
+    margin: 23px 20px 20px 20px;
+    color: $primary-color-text;
 
     button {
       font-size: 16px;
-      min-width: 90px;
+      padding: 0px;
+      margin: 0px 10px 0px 10px;
+    }
+
+    .selected {
+      border-bottom: 2px solid $accent-color;
+      border-radius: 0px;
     }
   }
 
   .search-bar {
     margin: 10px 10px 10px 10px;
+    background-color: $primary-color-text;
+    border-radius: 4px;
   }
 }
 

@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-menu.component.scss']
 })
 export class NavMenuComponent {
+  menuPage: string;
   searchText: string;
 }

@@ -7,7 +7,7 @@
 
     .home-main {
         width: 75%;
-        border-right: 1px solid grey;
+        border-right: 1px solid $divider-color;
         padding-right: 60px;
     
         .home-image {
@@ -30,15 +30,15 @@
         width: 200px;
         height: 350px;
         margin-left: 60px;
-        background-color: $accent-light;
         border-radius: 8px;
         box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     
         h6 {
             text-align: center;
+            color: $primary-color-text;
             padding: 10px 0px 10px 0px;
-            background-color: $accent;
-            border-radius: 8px;
+            background-color: $accent-color;
+            border-radius: 4px;
         }
 
         .feature-links {
