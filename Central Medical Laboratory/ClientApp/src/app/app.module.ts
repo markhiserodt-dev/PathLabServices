@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { MatCardModule } from '@angular/material';
     MatButtonModule,
     MatMenuModule,
     MatCardModule,
+    MatPaginatorModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

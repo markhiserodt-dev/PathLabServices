@@ -1,3 +1,23 @@
 <div class="tests">
+  <div class="results">
     <h4>Tests</h4>
+      <mat-card>
+        <mat-list>
+          <mat-list-item> test 1 </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item> test 2 </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item> test 3 </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
+      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </mat-card>
+  </div>
+
+  <div class="info">
+      <mat-card>
+    <h6>Info</h6>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse animi, necessitatibus optio iste corrupti maxime ex possimus sit doloribus quam quod, dolores a enim vel. In nisi delectus similique itaque!</p>
+</mat-card>
+  </div>
 </div>

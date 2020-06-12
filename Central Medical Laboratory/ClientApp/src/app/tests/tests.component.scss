@@ -1,0 +1,19 @@
+.tests {
+    width: 100%;
+    display: flex;
+    padding-top: 20px;
+
+    .results {
+        width: 75%;
+        padding: 10px 30px 10px 10px;
+    }
+
+    .info {
+        width: 25%;
+        padding: 10px 10px 10px 30px;
+
+        h6 {
+            text-align: center;
+        }
+    }
+}
