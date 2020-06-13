@@ -13,7 +13,7 @@
       <button mat-icon-button matSuffix (click)="searchText=''" [disabled]="!searchText" class="mat-form-field-suffix"><mat-icon class="mat-icon" color="warn">{{searchText ? "clear" : "" }}</mat-icon></button>
       <mat-label>Search tests...</mat-label>
       <input matInput type="text" [(ngModel)]="searchText">
-      <button mat-icon-button matSuffix class="mat-form-field-suffix"><mat-icon class="mat-icon">search</mat-icon></button>
+      <button mat-icon-button matSuffix class="mat-form-field-suffix" (click)="onSearchClick()"><mat-icon class="mat-icon">search</mat-icon></button>
     </mat-form-field>
   </div>
 

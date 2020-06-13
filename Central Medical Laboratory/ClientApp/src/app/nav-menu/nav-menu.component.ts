@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,4 +9,20 @@ import { Component } from '@angular/core';
 export class NavMenuComponent {
   menuPage: string;
   searchText: string;
+
+  constructor(private router: Router) {
+
+  }
+
+  ngOnInit() {
+
+  }
+
+  onSearchClick() {
+    this.router.navigate(['/tests', {search: this.searchText}]);
+  }
+
+  ngOnDestroy() {
+
+  }
 }
