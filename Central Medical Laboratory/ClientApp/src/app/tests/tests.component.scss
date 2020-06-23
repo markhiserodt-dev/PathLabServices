@@ -9,9 +9,45 @@
         width: 75%;
         padding: 10px 30px 10px 10px;
 
+        .result-header {
+            display: flex;
+            
+            button {
+                padding: 0px 0px 0px 10px;
+                margin: 0px 0px 0px 40px;
+            }
+
+            .shadowed-circular {
+                box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 
+                            0px 1px 1px 0px rgba(0, 0, 0, 0.14), 
+                            0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+                border-radius: 20px;
+            }
+
+            .alphabet-list {
+                display: flex;
+
+                button {
+                    min-width: 0px;
+                    padding: 0px 5px 0px 5px;
+                    margin: 0px 3px 0px 3px;
+                }
+
+                .border-bottom {
+                    border-bottom: 1px solid $accent-color !important;
+                    border-radius: 0px;
+                }
+            }
+        }
+
         .results {
             width: 100%;
             padding: 10px 0px 0px 0px;
+
+            h5 {
+                color: $primary-color;
+                padding: 0px 0px 0px 15px;
+            }
         }
     }
 
@@ -24,3 +60,10 @@
         }
     }
 }
+
+::ng-deep {
+    .mat-icon {
+      height: 18px;
+      width: 30px;
+    }
+  }

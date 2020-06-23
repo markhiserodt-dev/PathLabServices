@@ -3,9 +3,9 @@
   <button mat-mini-fab color="accent" class="cml-logo">CML</button>
 
   <div class="menu-tabs">
-    <button mat-button (click)="menuPage='home'" [routerLink]="['/']" [ngClass]="{selected : menuPage=='home'}">Home</button>
-    <button mat-button (click)="menuPage='tests'" [routerLink]="['/tests']" [ngClass]="{selected : menuPage=='tests'}">Tests</button>
-    <button mat-button (click)="menuPage='about'" [routerLink]="['/about']" [ngClass]="{selected : menuPage=='about'}">About</button>
+    <button mat-button [routerLink]="['/']" [ngClass]="{selected : menuPage=='home'}">Home</button>
+    <button mat-button [routerLink]="['/tests']" [ngClass]="{selected : menuPage=='tests'}">Tests</button>
+    <button mat-button [routerLink]="['/about']" [ngClass]="{selected : menuPage=='about'}">About</button>
   </div>
 
   <div class="search-bar">

@@ -2,10 +2,18 @@
 
   <div class="results-container">
     <h4>Tests</h4>
+    <div class="result-header">
+      <div class="alphabet-list">
+        <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'border-bottom' : letter.selected==true}">{{letter.value}}</button>
+      </div>
+      <button mat-button class="shadowed-circular" color="primary" *ngIf="searchText" (click)="removeFilter()">filter: {{searchText}} <mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
+    </div>
     <div class="results">
         <mat-card>
+          <h5>Results</h5>
+          <mat-divider></mat-divider>
           <mat-list *ngFor="let test of filteredTests">
-            <mat-list-item>{{test.name}}</mat-list-item>
+            <mat-list-item>{{test?.name}}</mat-list-item>
             <mat-divider></mat-divider>
           </mat-list>
         <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
