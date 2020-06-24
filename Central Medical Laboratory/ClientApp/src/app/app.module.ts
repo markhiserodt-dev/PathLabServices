@@ -19,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
+import { TestDetailComponent } from './test-detail/test-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MatListModule } from '@angular/material/list';
     NavMenuComponent,
     HomeComponent,
     AboutComponent,
-    TestsComponent
+    TestsComponent,
+    TestDetailComponent
   ],
   imports: [
     BrowserModule,

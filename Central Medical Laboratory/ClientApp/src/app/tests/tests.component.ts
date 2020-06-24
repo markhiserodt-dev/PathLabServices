@@ -29,7 +29,6 @@ export class TestsComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    console.log(this.alphabet);
     this.paramsSubscription = this.route.params.subscribe(params => {
       if (params['search']) {
         this.searchText = params['search'].toLowerCase();

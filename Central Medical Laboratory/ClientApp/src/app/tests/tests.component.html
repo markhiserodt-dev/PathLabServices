@@ -16,7 +16,7 @@
           </div>
           <mat-divider></mat-divider>
           <mat-list *ngFor="let test of filteredTests">
-            <mat-list-item>{{test?.name}}</mat-list-item>
+            <mat-list-item [routerLink]="['/test', test.id]">{{test?.name}}</mat-list-item>
             <mat-divider></mat-divider>
           </mat-list>
         <mat-paginator [length]="pageLength" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)"></mat-paginator>
