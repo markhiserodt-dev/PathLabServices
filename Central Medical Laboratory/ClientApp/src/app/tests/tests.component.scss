@@ -48,6 +48,14 @@
                 color: $primary-color;
                 padding: 0px 0px 0px 15px;
             }
+
+            .result-message {
+                padding: 0px 0px 0px 15px;
+
+                h6 {
+                    font-weight: 600;
+                }
+            }
         }
     }
 

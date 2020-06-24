@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./tests.component.scss']
 })
 export class TestsComponent implements OnInit, OnDestroy {
-  searchText: string = '';
+
   tests: any = [
     { id: 1, name: 'alpha test' },
     { id: 2, name: 'beta test' },
@@ -24,9 +24,10 @@ export class TestsComponent implements OnInit, OnDestroy {
     { id: 12, name: 'test3' },
     { id: 13, name: 'alpha2' }
   ];
+
   filteredTests: any = [];
 
-  alphabet: any[] = [
+  alphabet: any = [
     {value: 'a', selected: false},
     {value: 'b', selected: false},
     {value: 'c', selected: false},
@@ -55,6 +56,10 @@ export class TestsComponent implements OnInit, OnDestroy {
     {value: 'z', selected: false},
   ];
 
+  searchText: string = '';
+  selectedLetter: string = '';
+  resultMessage: string = '';
+
   private paramsSubscription: Subscription;
 
   constructor(private router: Router, private route: ActivatedRoute) { }
@@ -63,60 +68,60 @@ export class TestsComponent implements OnInit, OnDestroy {
     this.paramsSubscription = this.route.params.subscribe(params => {
       if (params['search']) {
         this.searchText = params['search'];
-        this.doSearch();
       } else {
         this.searchText = '';
-        this.filteredTests = this.tests;
+        this.unSelectLetters();
       }
+      this.doSearch();
     });
   }
 
   doSearch() {
-    if (!this.isLetterSelected()) {
+    if (!this.selectedLetter) {
       this.filteredTests = this.tests.filter(test => {
         return (test.name.indexOf(this.searchText) > -1);
       });
     } else {
-      this.filteredTests = [];
-      this.alphabet.forEach(letter => {
-        if (letter.selected) {
-          let filteredTestsTemp = this.tests.filter(test => {
-            return (test.name.indexOf(letter.value) == 0);
-          });
-          this.filteredTests = [...this.filteredTests, ...filteredTestsTemp];
-        }
+      this.filteredTests = this.tests.filter(test => {
+        return (test.name.indexOf(this.selectedLetter) == 0);
       });
       this.filteredTests = this.filteredTests.filter(test => {
         return (test.name.indexOf(this.searchText) > -1);
       });
     }
+    this.constructResultMessage();
   }
 
   onLetterClick(letter: any) {
-    this.unselectLetters();
-    letter.selected = !letter.selected;
+    if (letter.selected) {
+      this.unSelectLetters();
+    } else {
+      this.unSelectLetters();
+      letter.selected = true;
+      this.selectedLetter = letter.value;
+    }
     this.doSearch();
   }
 
-  removeFilter() {
-    this.searchText = '';
-    this.doSearch();
-  }
-
-  private unselectLetters() {
+  private unSelectLetters() {
     this.alphabet.forEach(letter => {
       letter.selected = false;
     });
+    this.selectedLetter = '';
   }
 
-  private isLetterSelected(): boolean {
-    let found: boolean = false;
-    this.alphabet.forEach(letter => {
-      if (letter.selected) {
-        found = true;
-      }
-    });
-    return found;
+  private constructResultMessage() {
+    if (this.selectedLetter && this.searchText && this.filteredTests.length > 0) {
+      this.resultMessage = 'showing ' + this.filteredTests.length + ' results starting with \'' + this.selectedLetter + '\' containing \'' + this.searchText + '\''; 
+    } else if (this.selectedLetter && !this.searchText && this.filteredTests.length > 0) {
+      this.resultMessage = 'showing ' + this.filteredTests.length + ' results starting with \'' + this.selectedLetter + '\'';
+    } else if (!this.selectedLetter && this.searchText && this.filteredTests.length > 0) {
+      this.resultMessage = 'showing ' + this.filteredTests.length + ' results containing \'' + this.searchText + '\''; 
+    } else if (!this.selectedLetter && !this.searchText) {
+      this.resultMessage = 'showing all ' + this.filteredTests.length + ' results';
+    } else {
+      this.resultMessage = 'no results matching the search criteria';
+    }
   }
 
   ngOnDestroy() {
