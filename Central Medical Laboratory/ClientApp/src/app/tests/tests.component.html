@@ -4,7 +4,7 @@
     <h4>Tests</h4>
     <div class="result-header">
       <div class="alphabet-list">
-        <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'border-bottom' : letter.selected==true}">{{letter.value}}</button>
+        <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'border-bottom' : letter==selectedLetter}">{{letter}}</button>
       </div>
       <button mat-button class="shadowed-circular" color="primary" *ngIf="searchText" [routerLink]="['/tests']">filter: {{searchText}} <mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material';
+import { Alphabet } from '../models/alphabet.model';
 
 @Component({
   selector: 'app-tests',
@@ -41,34 +42,7 @@ export class TestsComponent implements OnInit, OnDestroy {
 
   filteredTests: any = [];
 
-  alphabet: any = [
-    {value: 'a', selected: false},
-    {value: 'b', selected: false},
-    {value: 'c', selected: false},
-    {value: 'd', selected: false},
-    {value: 'e', selected: false},
-    {value: 'f', selected: false},
-    {value: 'g', selected: false},
-    {value: 'h', selected: false},
-    {value: 'i', selected: false},
-    {value: 'j', selected: false},
-    {value: 'k', selected: false},
-    {value: 'l', selected: false},
-    {value: 'm', selected: false},
-    {value: 'n', selected: false},
-    {value: 'o', selected: false},
-    {value: 'p', selected: false},
-    {value: 'q', selected: false},
-    {value: 'r', selected: false},
-    {value: 's', selected: false},
-    {value: 't', selected: false},
-    {value: 'u', selected: false},
-    {value: 'v', selected: false},
-    {value: 'w', selected: false},
-    {value: 'x', selected: false},
-    {value: 'y', selected: false},
-    {value: 'z', selected: false},
-  ];
+  alphabet = Alphabet;
 
   searchText: string = '';
   selectedLetter: string = '';
@@ -78,18 +52,18 @@ export class TestsComponent implements OnInit, OnDestroy {
   pageSize: number = 5;
   pageIndex: number = 0;
 
-
   private paramsSubscription: Subscription;
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log(this.alphabet);
     this.paramsSubscription = this.route.params.subscribe(params => {
       if (params['search']) {
         this.searchText = params['search'];
       } else {
         this.searchText = '';
-        this.unSelectLetters();
+        this.selectedLetter = '';
       }
       this.doSearch();
     });
@@ -114,12 +88,10 @@ export class TestsComponent implements OnInit, OnDestroy {
   }
 
   onLetterClick(letter: any) {
-    if (letter.selected) {
-      this.unSelectLetters();
+    if (this.selectedLetter == letter) {
+      this.selectedLetter = '';
     } else {
-      this.unSelectLetters();
-      letter.selected = true;
-      this.selectedLetter = letter.value;
+      this.selectedLetter = letter;
     }
     this.doSearch();
   }
@@ -128,13 +100,6 @@ export class TestsComponent implements OnInit, OnDestroy {
     this.pageIndex = pageEvent.pageIndex;
     this.pageSize = pageEvent.pageSize;
     this.doSearch();
-  }
-
-  private unSelectLetters() {
-    this.alphabet.forEach(letter => {
-      letter.selected = false;
-    });
-    this.selectedLetter = '';
   }
 
   private constructResultMessage() {
