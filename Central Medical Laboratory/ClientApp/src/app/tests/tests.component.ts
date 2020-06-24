@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-tests',
@@ -22,7 +23,20 @@ export class TestsComponent implements OnInit, OnDestroy {
     { id: 10, name: 'test1' },
     { id: 11, name: 'test2' },
     { id: 12, name: 'test3' },
-    { id: 13, name: 'alpha2' }
+    { id: 13, name: 'alpha2' },
+    { id: 1, name: 'alpha2 test' },
+    { id: 2, name: 'beta2 test' },
+    { id: 3, name: 'gamma2 test' },
+    { id: 4, name: 'delta2 test' },
+    { id: 5, name: 'epsilon2 test' },
+    { id: 6, name: 'zeta2 test' },
+    { id: 7, name: 'eta2 test' },
+    { id: 8, name: 'theta2 test' },
+    { id: 9, name: 'iota2 test' },
+    { id: 10, name: 'test1' },
+    { id: 11, name: 'test2' },
+    { id: 12, name: 'test3' },
+    { id: 13, name: 'alpha3' }
   ];
 
   filteredTests: any = [];
@@ -60,6 +74,11 @@ export class TestsComponent implements OnInit, OnDestroy {
   selectedLetter: string = '';
   resultMessage: string = '';
 
+  pageLength: number = 0;
+  pageSize: number = 5;
+  pageIndex: number = 0;
+
+
   private paramsSubscription: Subscription;
 
   constructor(private router: Router, private route: ActivatedRoute) { }
@@ -90,6 +109,8 @@ export class TestsComponent implements OnInit, OnDestroy {
       });
     }
     this.constructResultMessage();
+    this.pageLength = this.filteredTests.length;
+    this.filteredTests = this.filteredTests.slice(this.pageIndex * this.pageSize, this.pageSize * (this.pageIndex + 1));
   }
 
   onLetterClick(letter: any) {
@@ -100,6 +121,12 @@ export class TestsComponent implements OnInit, OnDestroy {
       letter.selected = true;
       this.selectedLetter = letter.value;
     }
+    this.doSearch();
+  }
+
+  onPageChange(pageEvent: PageEvent) {
+    this.pageIndex = pageEvent.pageIndex;
+    this.pageSize = pageEvent.pageSize;
     this.doSearch();
   }
 
