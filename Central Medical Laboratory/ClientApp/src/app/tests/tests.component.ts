@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material';
 import { Alphabet } from '../models/alphabet.model';
+import { Test, Tests } from '../models/tests.model';
 
 @Component({
   selector: 'app-tests',
@@ -10,57 +11,28 @@ import { Alphabet } from '../models/alphabet.model';
   styleUrls: ['./tests.component.scss']
 })
 export class TestsComponent implements OnInit, OnDestroy {
-
-  tests: any = [
-    { id: 1, name: 'alpha test' },
-    { id: 2, name: 'beta test' },
-    { id: 3, name: 'gamma test' },
-    { id: 4, name: 'delta test' },
-    { id: 5, name: 'epsilon test' },
-    { id: 6, name: 'zeta test' },
-    { id: 7, name: 'eta test' },
-    { id: 8, name: 'theta test' },
-    { id: 9, name: 'iota test' },
-    { id: 10, name: 'test1' },
-    { id: 11, name: 'test2' },
-    { id: 12, name: 'test3' },
-    { id: 13, name: 'alpha2' },
-    { id: 1, name: 'alpha2 test' },
-    { id: 2, name: 'beta2 test' },
-    { id: 3, name: 'gamma2 test' },
-    { id: 4, name: 'delta2 test' },
-    { id: 5, name: 'epsilon2 test' },
-    { id: 6, name: 'zeta2 test' },
-    { id: 7, name: 'eta2 test' },
-    { id: 8, name: 'theta2 test' },
-    { id: 9, name: 'iota2 test' },
-    { id: 10, name: 'test1' },
-    { id: 11, name: 'test2' },
-    { id: 12, name: 'test3' },
-    { id: 13, name: 'alpha3' }
-  ];
-
-  filteredTests: any = [];
-
   alphabet = Alphabet;
+
+  tests = Tests;
+  filteredTests: Test[] = [];
 
   searchText: string = '';
   selectedLetter: string = '';
   resultMessage: string = '';
 
-  pageLength: number = 0;
   pageSize: number = 5;
   pageIndex: number = 0;
+  pageLength: number = 0;
 
   private paramsSubscription: Subscription;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     console.log(this.alphabet);
     this.paramsSubscription = this.route.params.subscribe(params => {
       if (params['search']) {
-        this.searchText = params['search'];
+        this.searchText = params['search'].toLowerCase();
       } else {
         this.searchText = '';
         this.selectedLetter = '';
@@ -71,15 +43,15 @@ export class TestsComponent implements OnInit, OnDestroy {
 
   doSearch() {
     if (!this.selectedLetter) {
-      this.filteredTests = this.tests.filter(test => {
-        return (test.name.indexOf(this.searchText) > -1);
+      this.filteredTests = this.tests.filter((test: Test) => {
+        return (test.name.toLowerCase().indexOf(this.searchText) > -1);
       });
     } else {
-      this.filteredTests = this.tests.filter(test => {
-        return (test.name.indexOf(this.selectedLetter) == 0);
+      this.filteredTests = this.tests.filter((test: Test) => {
+        return (test.name.toLowerCase().indexOf(this.selectedLetter) == 0);
       });
-      this.filteredTests = this.filteredTests.filter(test => {
-        return (test.name.indexOf(this.searchText) > -1);
+      this.filteredTests = this.filteredTests.filter((test: Test) => {
+        return (test.name.toLowerCase().indexOf(this.searchText) > -1);
       });
     }
     this.constructResultMessage();
@@ -87,7 +59,7 @@ export class TestsComponent implements OnInit, OnDestroy {
     this.filteredTests = this.filteredTests.slice(this.pageIndex * this.pageSize, this.pageSize * (this.pageIndex + 1));
   }
 
-  onLetterClick(letter: any) {
+  onLetterClick(letter: string) {
     if (this.selectedLetter == letter) {
       this.selectedLetter = '';
     } else {
