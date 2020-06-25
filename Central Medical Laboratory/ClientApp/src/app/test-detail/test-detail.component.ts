@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { Test, Tests } from '../models/tests.model';
 
@@ -14,12 +14,17 @@ export class TestDetailComponent implements OnInit, OnDestroy {
 
   private paramsSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(params => {
-      if(params['id']) {
-        this.test = Tests[+params['id']];
+      if (params['id']) {
+        let id = +params['id'];
+        if (id >= 0 && id < Tests.length) {
+          this.test = Tests[id];
+        } else {
+          this.router.navigate(['/tests']);
+        }
       }
     });
   }

@@ -1,0 +1,27 @@
+@import '../../styles';
+
+.test-detail {
+    width: 100%;
+    display: flex;
+    padding: 20px 0px 0px 0px;
+
+    .detail-container {
+        width: 75%;
+        padding: 10px 30px 10px 10px;
+
+        .details {
+            padding: 10px 0px 0px 0px;
+        }
+    }
+
+    .info {
+        width: 25%;
+        padding: 40px 10px 10px 30px;
+
+        h6 {
+            text-align: center;
+            color: $primary-color;
+            font-weight: 600;
+        }
+    }
+}

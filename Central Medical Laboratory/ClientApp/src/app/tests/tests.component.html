@@ -9,23 +9,23 @@
       <button mat-button class="shadowed-circular" color="primary" *ngIf="searchText" [routerLink]="['/tests']">filter: {{searchText}} <mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
     </div>
     <div class="results">
-        <mat-card>
-          <h5>Results</h5>
-          <div class="result-message">
-            <h6>{{resultMessage}}</h6>
-          </div>
-          <mat-divider></mat-divider>
-          <mat-list *ngFor="let test of filteredTests">
-            <mat-list-item>
-              <div class="test-link">
-                <a [routerLink]="['/test', test.id]">{{test?.name}}</a>
-                <div class="test-description">
-                  {{test?.description}}
-                </div>
+      <mat-card>
+        <h5>Results</h5>
+        <div class="result-message">
+          <h6>{{resultMessage}}</h6>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-list *ngFor="let test of filteredTests">
+          <mat-list-item>
+            <div class="test-link">
+              <a [routerLink]="['/test', test.id]">{{test?.name}}</a>
+              <div class="test-description">
+                {{test?.description}}
               </div>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-          </mat-list>
+            </div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </mat-list>
         <mat-paginator [length]="pageLength" [pageSize]="pageSize" [pageIndex]="pageIndex" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)"></mat-paginator>
       </mat-card>
     </div>
