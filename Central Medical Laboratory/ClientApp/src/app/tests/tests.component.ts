@@ -23,6 +23,11 @@ export class TestsComponent implements OnInit, OnDestroy {
   pageSize: number = 5;
   pageIndex: number = 0;
   pageLength: number = 0;
+  defaultPage: PageEvent = {
+    pageSize: 5,
+    pageIndex: 0,
+    length: 0
+  };
 
   private paramsSubscription: Subscription;
 
@@ -36,8 +41,23 @@ export class TestsComponent implements OnInit, OnDestroy {
         this.searchText = '';
         this.selectedLetter = '';
       }
-      this.doSearch();
+      this.onPageChange(this.defaultPage);
     });
+  }
+
+  onPageChange(pageEvent: PageEvent) {
+    this.pageIndex = pageEvent.pageIndex;
+    this.pageSize = pageEvent.pageSize;
+    this.doSearch();
+  }
+
+  onLetterClick(letter: string) {
+    if (this.selectedLetter == letter) {
+      this.selectedLetter = '';
+    } else {
+      this.selectedLetter = letter;
+    }
+    this.onPageChange(this.defaultPage);
   }
 
   doSearch() {
@@ -56,21 +76,6 @@ export class TestsComponent implements OnInit, OnDestroy {
     this.constructResultMessage();
     this.pageLength = this.filteredTests.length;
     this.filteredTests = this.filteredTests.slice(this.pageIndex * this.pageSize, this.pageSize * (this.pageIndex + 1));
-  }
-
-  onLetterClick(letter: string) {
-    if (this.selectedLetter == letter) {
-      this.selectedLetter = '';
-    } else {
-      this.selectedLetter = letter;
-    }
-    this.doSearch();
-  }
-
-  onPageChange(pageEvent: PageEvent) {
-    this.pageIndex = pageEvent.pageIndex;
-    this.pageSize = pageEvent.pageSize;
-    this.doSearch();
   }
 
   private constructResultMessage() {

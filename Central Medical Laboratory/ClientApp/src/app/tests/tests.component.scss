@@ -56,6 +56,18 @@
                     font-weight: 600;
                 }
             }
+
+            .test-link {
+                a {
+                    color: $primary-text-color;
+                }
+
+                a:hover {
+                    cursor: pointer;
+                    text-decoration: none;
+                    color: $primary-color;
+                }
+            }
         }
     }
 
