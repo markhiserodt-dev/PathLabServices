@@ -19,6 +19,9 @@
             <mat-list-item>
               <div class="test-link">
                 <a [routerLink]="['/test', test.id]">{{test?.name}}</a>
+                <div class="test-description">
+                  {{test?.description}}
+                </div>
               </div>
             </mat-list-item>
             <mat-divider></mat-divider>

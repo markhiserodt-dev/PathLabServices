@@ -51,21 +51,25 @@
 
             .result-message {
                 padding: 0px 0px 0px 15px;
-
-                h6 {
-                    font-weight: 600;
-                }
             }
 
             .test-link {
+                white-space: nowrap;
+                overflow-x: hidden;
+
                 a {
                     color: $primary-text-color;
+                    font-weight: 600;
                 }
 
                 a:hover {
                     cursor: pointer;
                     text-decoration: none;
                     color: $primary-color;
+                }
+
+                .test-description {
+                    font-size: 12px;
                 }
             }
         }
@@ -77,6 +81,8 @@
 
         h6 {
             text-align: center;
+            color: $primary-color;
+            font-weight: 600;
         }
     }
 }

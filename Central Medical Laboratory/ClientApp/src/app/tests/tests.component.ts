@@ -13,7 +13,6 @@ import { Test, Tests } from '../models/tests.model';
 export class TestsComponent implements OnInit, OnDestroy {
   alphabet = Alphabet;
 
-  tests = Tests;
   filteredTests: Test[] = [];
 
   searchText: string = '';
@@ -23,7 +22,7 @@ export class TestsComponent implements OnInit, OnDestroy {
   pageSize: number = 5;
   pageIndex: number = 0;
   pageLength: number = 0;
-  defaultPage: PageEvent = {
+  defaultPageEvent: PageEvent = {
     pageSize: 5,
     pageIndex: 0,
     length: 0
@@ -35,20 +34,13 @@ export class TestsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(params => {
+      this.searchText = '';
+      this.selectedLetter = '';
       if (params['search']) {
         this.searchText = params['search'].toLowerCase();
-      } else {
-        this.searchText = '';
-        this.selectedLetter = '';
       }
-      this.onPageChange(this.defaultPage);
+      this.onPageChange(this.defaultPageEvent);
     });
-  }
-
-  onPageChange(pageEvent: PageEvent) {
-    this.pageIndex = pageEvent.pageIndex;
-    this.pageSize = pageEvent.pageSize;
-    this.doSearch();
   }
 
   onLetterClick(letter: string) {
@@ -57,16 +49,23 @@ export class TestsComponent implements OnInit, OnDestroy {
     } else {
       this.selectedLetter = letter;
     }
-    this.onPageChange(this.defaultPage);
+    this.onPageChange(this.defaultPageEvent);
+  }
+
+
+  onPageChange(pageEvent: PageEvent) {
+    this.pageIndex = pageEvent.pageIndex;
+    this.pageSize = pageEvent.pageSize;
+    this.doSearch();
   }
 
   doSearch() {
     if (!this.selectedLetter) {
-      this.filteredTests = this.tests.filter((test: Test) => {
+      this.filteredTests = Tests.filter((test: Test) => {
         return (test.name.toLowerCase().indexOf(this.searchText) > -1);
       });
     } else {
-      this.filteredTests = this.tests.filter((test: Test) => {
+      this.filteredTests = Tests.filter((test: Test) => {
         return (test.name.toLowerCase().indexOf(this.selectedLetter) == 0);
       });
       this.filteredTests = this.filteredTests.filter((test: Test) => {
