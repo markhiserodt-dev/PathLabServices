@@ -19,11 +19,11 @@ export class TestsComponent implements OnInit, OnDestroy {
   selectedLetter: string = '';
   resultMessage: string = '';
 
-  pageSize: number = 5;
+  pageSize: number = 10;
   pageIndex: number = 0;
   pageLength: number = 0;
   defaultPageEvent: PageEvent = {
-    pageSize: 5,
+    pageSize: 10,
     pageIndex: 0,
     length: 0
   };

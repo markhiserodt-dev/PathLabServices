@@ -9,8 +9,21 @@
         width: 75%;
         padding: 10px 30px 10px 10px;
 
+        h4 {
+          color: $primary-color;
+        }
+
         .details {
             padding: 10px 0px 0px 0px;
+
+            mat-list-item {
+              font-size: 14px;
+
+              div {
+                font-weight: 600;
+                width: 50%;
+              }
+            }
         }
     }
 

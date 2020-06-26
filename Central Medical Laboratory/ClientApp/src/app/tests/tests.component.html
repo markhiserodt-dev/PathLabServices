@@ -6,7 +6,7 @@
       <div class="alphabet-list">
         <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'border-bottom' : letter==selectedLetter}">{{letter}}</button>
       </div>
-      <button mat-button class="shadowed-circular" color="primary" *ngIf="searchText" [routerLink]="['/tests']">filter: {{searchText}} <mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
+      <button mat-button class="shadowed-circular" color="primary" *ngIf="searchText" [routerLink]="['/tests']">remove: {{searchText}} <mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
     </div>
     <div class="results">
       <mat-card>
@@ -20,7 +20,7 @@
             <div class="test-link">
               <a [routerLink]="['/test', test.id]">{{test?.name}}</a>
               <div class="test-description">
-                {{test?.description}}
+                {{test?.code}}
               </div>
             </div>
           </mat-list-item>

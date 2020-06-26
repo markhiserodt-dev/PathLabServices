@@ -4,7 +4,82 @@
     <h4>{{test?.name}}</h4>
     <div class="details">
       <mat-card>
-        <p>{{test?.description}}</p>
+        <mat-list>
+          <mat-list-item>
+            <div>Test Code:</div>
+            {{test?.code}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Test Name:</div>
+            {{test?.name}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>CPT Code:</div>
+            {{test?.cptCode}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Preferred Requirement:</div>
+            {{test?.preferredRequirement}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Alternate Requirement:</div>
+            {{test?.alternateRequirement}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Minimum Volume:</div>
+            {{test?.minimumVolume}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Transport Temperature:</div>
+            {{test?.transportTemp}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>TAT:</div>
+            {{test?.tat}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Methodology:</div>
+            {{test?.methodology}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Days Performed:</div>
+            {{test?.daysPerformed}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Special Instructions:</div>
+            {{test?.specialInstructions}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Comments:</div>
+            {{test?.comments}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Tests Included:</div>
+            {{test?.testIncluded}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Performing Lab:</div>
+            {{test?.performingLab}}
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <div>Clinical Significance:</div>
+            {{test?.clinicalSignificance}}
+          </mat-list-item>
+        </mat-list>
       </mat-card>
     </div>
   </div>
