@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Test, Tests } from '../models/tests.model';
 
 @Component({
   selector: 'app-nav-menu',
@@ -10,18 +11,22 @@ import { Subscription } from 'rxjs';
 export class NavMenuComponent implements OnInit, OnDestroy{
   menuPage: string;
   searchText: string;
+  recentTests: Test[] = [];
 
   private routeSubscription: Subscription;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    let recentTests = <Test[]>JSON.parse(localStorage.getItem('recentTests'));
+    if (recentTests) {
+      this.recentTests = recentTests;
+    }
     this.routeSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        if (this.activatedRoute.snapshot.children[0].url[0]) {
-          this.menuPage = this.activatedRoute.snapshot.children[0].url[0].path;
-        } else {
-          this.menuPage = 'home';
+        this.menuPage = event.url;
+        if (event.url.indexOf('/test/') == 0) {
+          this.addRecentTest(event.url);
         }
       }
     });
@@ -33,6 +38,22 @@ export class NavMenuComponent implements OnInit, OnDestroy{
     } else {
       this.router.navigate(['/tests']);
     }
+  }
+
+  private addRecentTest(url: string) {
+    let id: number = +url.slice(6);
+    if (id >= 0 && id < Tests.length) {
+      let found = this.recentTests.find((test: Test) => {
+        return test.id == id;
+      });
+      if (!found) {
+        let length = this.recentTests.push(Tests[id]);
+        if (length > 5) {
+          this.recentTests.splice(0, 1);
+        }
+      }
+    }
+    localStorage.setItem('recentTests', JSON.stringify(this.recentTests));
   }
 
   ngOnDestroy() {

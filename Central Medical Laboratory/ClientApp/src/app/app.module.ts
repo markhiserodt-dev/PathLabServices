@@ -8,6 +8,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { TestsComponent } from './tests/tests.component';
+import { TestDetailComponent } from './test-detail/test-detail.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -19,7 +20,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
-import { TestDetailComponent } from './test-detail/test-detail.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatMenuModule } from '@angular/material/menu'
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { TestDetailComponent } from './test-detail/test-detail.component';
     MatCardModule,
     MatPaginatorModule,
     MatListModule,
+    MatChipsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

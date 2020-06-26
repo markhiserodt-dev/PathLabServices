@@ -3,9 +3,9 @@
   <button mat-mini-fab color="accent" class="cml-logo" [routerLink]="['/']">CML</button>
 
   <div class="menu-tabs">
-    <button mat-button [routerLink]="['/']" [ngClass]="{selected : menuPage=='home'}">Home</button>
-    <button mat-button [routerLink]="['/tests']" [ngClass]="{selected : menuPage=='tests'}">Tests</button>
-    <button mat-button [routerLink]="['/about']" [ngClass]="{selected : menuPage=='about'}">About</button>
+    <button mat-button [routerLink]="['/']" [ngClass]="{selected : menuPage=='/'}">Home</button>
+    <button mat-button [routerLink]="['/tests']" [ngClass]="{selected : menuPage=='/tests'}">Tests</button>
+    <button mat-button [routerLink]="['/about']" [ngClass]="{selected : menuPage=='/about'}">About</button>
   </div>
 
   <div class="search-bar">
@@ -15,6 +15,15 @@
       <input matInput type="text" [(ngModel)]="searchText">
       <button mat-icon-button matSuffix class="mat-form-field-suffix" (click)="onSearchClick()"><mat-icon class="mat-icon">search</mat-icon></button>
     </mat-form-field>
+  </div>
+
+  <div class="recent-tests" *ngIf="recentTests.length > 0">
+    <button mat-button [matMenuTriggerFor]="menu">Recently Viewed Tests<mat-icon>arrow_drop_down</mat-icon></button>
+    <mat-menu #menu="matMenu" xPosition="after">
+      <button mat-menu-item class="menu-item" *ngFor="let test of recentTests" [routerLink]="['/test', test.id]">
+        {{test.name}}
+      </button>
+    </mat-menu>
   </div>
 
 </div>

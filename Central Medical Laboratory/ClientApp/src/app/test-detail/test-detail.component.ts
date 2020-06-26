@@ -19,7 +19,7 @@ export class TestDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(params => {
       if (params['id']) {
-        let id = +params['id'];
+        let id: number = +params['id'];
         if (id >= 0 && id < Tests.length) {
           this.test = Tests[id];
         } else {

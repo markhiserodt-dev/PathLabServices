@@ -39,5 +39,8 @@ $primary-text-color: #212121;
 $secondary-text-color: #757575;
 $divider-color: #bdbdbd;
 
-// html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+::ng-deep {
+  button:focus {
+    outline: none;
+  }
+}

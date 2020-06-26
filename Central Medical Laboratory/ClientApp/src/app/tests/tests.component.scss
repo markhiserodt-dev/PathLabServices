@@ -33,6 +33,10 @@
                     margin: 0px 3px 0px 3px;
                 }
 
+                button:focus {
+                  outline: none;
+                }
+
                 .border-bottom {
                     border-bottom: 1px solid $accent-color !important;
                     border-radius: 0px;
@@ -88,8 +92,11 @@
 }
 
 ::ng-deep {
+  .shadowed-circular {
     .mat-icon {
-      height: 18px;
-      width: 30px;
+      font-size: 125%;
+      height: 20px;
+      width: 35px;
     }
   }
+}
