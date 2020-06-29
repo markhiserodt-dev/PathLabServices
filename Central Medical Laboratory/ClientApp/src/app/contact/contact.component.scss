@@ -10,32 +10,34 @@
     width: 50%;
     padding: 0px 40px 0px 0px;
 
+    h4 {
+      padding-bottom: 10px;
+    }
+
     mat-card {
-      margin: 40px 0px 0px 0px;
+      margin: 0px 0px 40px 0px;
       display: flex;
 
       .personal {
-        width: 66%;
+        width: 60%;
+        border-right: 0.5px dashed grey;
+        padding-left: 20px; 
 
         h6 {
           color: $primary-color;
-          margin-bottom: 16px;
-        }
-
-        .italics {
-          font-style: italic;
+          margin: 10px 0px 16px 0px;
         }
       }
 
       .photo {
-        width: 33%;
+        width: 40%;
 
         mat-icon {
-          font-size: 94px;
+          font-size: 100px;
           height: fit-content;
           width: fit-content;
           float: right;
-          padding-right: 20px;
+          padding: 10px 40px 0px 0px;
           color: $primary-color-dark;
         }
       }
@@ -45,5 +47,17 @@
   .map {
     width: 50%;
     padding: 0px 0px 0px 40px;
+
+    h4 {
+      padding-bottom: 10px;
+    }
+  }
+
+  .italics {
+    font-style: italic;
+  }
+
+  .light {
+    font-weight: 200;
   }
 }
