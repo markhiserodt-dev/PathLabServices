@@ -9,6 +9,9 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { TestsComponent } from './tests/tests.component';
 import { TestDetailComponent } from './test-detail/test-detail.component';
+import { FooterComponent } from './footer/footer.component';
+import { GoogleMapComponent } from './google-map/google-map.component';
+import { ContactComponent } from './contact/contact.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -29,7 +32,10 @@ import { MatChipsModule } from '@angular/material/chips';
     HomeComponent,
     AboutComponent,
     TestsComponent,
-    TestDetailComponent
+    TestDetailComponent,
+    FooterComponent,
+    GoogleMapComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

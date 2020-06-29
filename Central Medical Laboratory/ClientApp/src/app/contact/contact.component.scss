@@ -1,0 +1,49 @@
+@import '../../styles';
+
+.contact {
+
+  width: 100%;
+  display: flex;
+  padding: 20px 0px 0px 0px;
+
+  .contact-info {
+    width: 50%;
+    padding: 0px 40px 0px 0px;
+
+    mat-card {
+      margin: 40px 0px 0px 0px;
+      display: flex;
+
+      .personal {
+        width: 66%;
+
+        h6 {
+          color: $primary-color;
+          margin-bottom: 16px;
+        }
+
+        .italics {
+          font-style: italic;
+        }
+      }
+
+      .photo {
+        width: 33%;
+
+        mat-icon {
+          font-size: 94px;
+          height: fit-content;
+          width: fit-content;
+          float: right;
+          padding-right: 20px;
+          color: $primary-color-dark;
+        }
+      }
+    }
+  }
+
+  .map {
+    width: 50%;
+    padding: 0px 0px 0px 40px;
+  }
+}
