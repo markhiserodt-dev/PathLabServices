@@ -27,6 +27,8 @@ export class NavMenuComponent implements OnInit, OnDestroy{
         this.menuPage = event.url;
         if (event.url.indexOf('/test/') == 0) {
           this.addRecentTest(event.url);
+        } else if (event.url.indexOf('/tests') == 0) {
+          this.menuPage = '/tests';
         }
       }
     });

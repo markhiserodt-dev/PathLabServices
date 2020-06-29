@@ -39,7 +39,7 @@ export const Tests: Test[] = [
     {
         id: 1,
         code: 999,
-        name: 'Alochol',
+        name: 'Alcohol',
         cptCode: 99999,
         preferredRequirement: '<preferredRequirement>',
         alternateRequirement: '<alternateRequirement>',
