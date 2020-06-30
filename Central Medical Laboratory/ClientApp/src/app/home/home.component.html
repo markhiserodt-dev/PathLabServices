@@ -1,9 +1,48 @@
 <div class="home">
+
   <div class="header">
     <div class="title">
       <h1>Central Medical Laboratory</h1>
       <h2>Getting the results you need</h2>
-      <button mat-button>Learn more</button>
+      <button mat-button [routerLink]="['/about']">Learn more</button>
     </div>
   </div>
+
+  <div class="homepage-row">
+    <div class="homepage-image">
+      <mat-icon>search</mat-icon>
+    </div>
+    <div class="homepage-info">
+      <h2>Search the Right Test for You</h2>
+      <p>We have a comprehensive set of tests which are easy to discover</p>
+      <button mat-button [routerLink]="['/tests']">Tests</button>
+    </div>
+  </div>
+
+  <div class="homepage-row">
+    <div class="homepage-info-left">
+      <h2>Understand what we're about</h2>
+      <p>We want to give you our story, so that you can feel comfortable and confidant you are making the best choice</p>
+      <button mat-button [routerLink]="['/about']">About</button>
+    </div>
+    <div class="homepage-image-right">
+      <mat-icon>roofing</mat-icon>
+    </div>
+  </div>
+
+  <div class="homepage-row">
+    <div class="homepage-image">
+      <mat-icon>room</mat-icon>
+    </div>
+    <div class="homepage-info">
+      <h2>Contact Us</h2>
+      <p>Find out where we are located and reach out to us</p>
+      <button mat-button [routerLink]="['/contact']">Contact</button>
+    </div>
+  </div>
+
+  <div class="centered">
+    <button mat-button [routerLink]="['/tests']">Get started</button>
+  </div>
+
 </div>
