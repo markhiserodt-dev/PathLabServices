@@ -10,13 +10,13 @@
         <div class="alphabet-list">
           <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'border-bottom' : letter==selectedLetter}">{{letter}}</button>
         </div>
-        <button mat-button class="shadowed-circular" color="primary" *ngIf="searchText" [routerLink]="['/tests']">remove: {{searchText}} <mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
       </div>
       <div class="results">
         <mat-card>
           <h5>Results</h5>
           <div class="result-message">
             <h6>{{resultMessage}}</h6>
+            <button mat-button class="shadowed-circular right" color="primary" *ngIf="searchText" [routerLink]="['/tests']">clear filter<mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
           </div>
           <mat-divider></mat-divider>
           <mat-list *ngFor="let test of filteredTests">
