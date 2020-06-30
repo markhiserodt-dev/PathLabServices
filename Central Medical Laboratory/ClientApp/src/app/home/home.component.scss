@@ -3,7 +3,7 @@
 .home {
     width: 100%;
 
-    .header {
+    .featured {
       width: 100%;
       background-color: $primary-color-dark;
 
@@ -134,8 +134,9 @@
 
     .centered {
       text-align: center;
+      margin-bottom: 60px;
       button {
-        background-color: $accent-color;
+        background-color: $accent-color-dark;
         color: $primary-color-text;
       }
     }

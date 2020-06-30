@@ -1,41 +1,47 @@
 <div class="tests">
 
-  <div class="results-container">
+  <div class="header">
     <h4>Tests</h4>
-    <div class="result-header">
-      <div class="alphabet-list">
-        <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'border-bottom' : letter==selectedLetter}">{{letter}}</button>
-      </div>
-      <button mat-button class="shadowed-circular" color="primary" *ngIf="searchText" [routerLink]="['/tests']">remove: {{searchText}} <mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
-    </div>
-    <div class="results">
-      <mat-card>
-        <h5>Results</h5>
-        <div class="result-message">
-          <h6>{{resultMessage}}</h6>
-        </div>
-        <mat-divider></mat-divider>
-        <mat-list *ngFor="let test of filteredTests">
-          <mat-list-item>
-            <div class="test-link">
-              <a [routerLink]="['/test', test.id]">{{test?.name}}</a>
-              <div class="test-description">
-                {{test?.code}}
-              </div>
-            </div>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
-        <mat-paginator [length]="pageLength" [pageSize]="pageSize" [pageIndex]="pageIndex" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)"></mat-paginator>
-      </mat-card>
-    </div>
   </div>
 
-  <div class="info">
-    <mat-card>
-      <h6>Info</h6>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse animi, necessitatibus optio iste corrupti maxime ex possimus sit doloribus quam quod, dolores a enim vel. In nisi delectus similique itaque!</p>
-    </mat-card>
+  <div class="body flex">
+    <div class="results-container">
+      <div class="result-header">
+        <div class="alphabet-list">
+          <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'border-bottom' : letter==selectedLetter}">{{letter}}</button>
+        </div>
+        <button mat-button class="shadowed-circular" color="primary" *ngIf="searchText" [routerLink]="['/tests']">remove: {{searchText}} <mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
+      </div>
+      <div class="results">
+        <mat-card>
+          <h5>Results</h5>
+          <div class="result-message">
+            <h6>{{resultMessage}}</h6>
+          </div>
+          <mat-divider></mat-divider>
+          <mat-list *ngFor="let test of filteredTests">
+            <mat-list-item>
+              <div class="test-link">
+                <a [routerLink]="['/test', test.id]">{{test?.name}}</a>
+                <div class="test-description">
+                  {{test?.code}}
+                </div>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+          <mat-paginator [length]="pageLength" [pageSize]="pageSize" [pageIndex]="pageIndex" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)"></mat-paginator>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="info">
+      <mat-card>
+        <h6>Info</h6>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse animi, necessitatibus optio iste corrupti maxime ex possimus sit doloribus quam quod, dolores a enim vel. In nisi delectus similique itaque!</p>
+      </mat-card>
+    </div>
+
   </div>
 
 </div>
