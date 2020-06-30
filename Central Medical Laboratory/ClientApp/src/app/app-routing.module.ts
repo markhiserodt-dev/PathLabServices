@@ -7,7 +7,6 @@ import { TestDetailComponent } from './test-detail/test-detail.component';
 import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [  
-    { path: '', component: HomeComponent, pathMatch: 'full' },
     { path: 'tests', component: TestsComponent },
     { path: 'tests/:searchText', component: TestsComponent },
     { path: 'test/:id', component: TestDetailComponent },

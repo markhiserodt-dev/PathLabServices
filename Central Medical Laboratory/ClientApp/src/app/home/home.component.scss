@@ -3,46 +3,35 @@
 .home {
     width: 100%;
     display: flex;
-    padding-top: 20px;
 
-    .home-main {
-        width: 75%;
-        border-right: 1px solid $divider-color;
-        padding-right: 60px;
-    
-        .home-image {
-            padding-bottom: 20px;
-    
-            img {
-                width: 100%;
-            }
-        }
-    
-        .home-info {
+    .header {
+      width: 100%;
+      background-color: $primary-color-dark;
 
-            h4 {
-                text-align: center;
-            }
-        }
-    }
+      .title {
+        line-height: 56px;
+        margin: 15px 5px;
+        height: 300px;
+        color: $primary-color-text;
+        text-align: center;
 
-    .feature-block {
-        width: 200px;
-        height: 350px;
-        margin-left: 60px;
-        border-radius: 8px;
-        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-    
-        h6 {
-            text-align: center;
-            color: $primary-color-text;
-            padding: 10px 0px 10px 0px;
-            background-color: $accent-color;
-            border-radius: 4px;
+        h1 {
+          padding-top: 50px;
+          font-size: 56px;
+          font-weight: 300;
         }
 
-        .feature-links {
-            line-height: 2em;
+        h2 {
+          font-size: 18px;
+          font-weight: 300;
+          line-height: 28px;
+          margin: 15px 0 25px;
         }
+
+        button {
+          background-color: $primary-color-text;
+          color: $primary-text-color;
+        }
+      }
     }
 }
