@@ -7,14 +7,16 @@
   background-color: $primary-color-dark;
 
   .logo {
-    display: flex;
     width: 33%;
-    padding: 30px 0px 0px 35px;
 
-    p {
-      color: $primary-color-text;
-      font-size: 16px;
-      padding: 5px 0px 0px 20px;
+    img {
+      height: 70px;
+      width: 160px;
+      margin: 10px 0px 0px 20px;
+    }
+
+    img:hover {
+      cursor: pointer;
     }
   }
 

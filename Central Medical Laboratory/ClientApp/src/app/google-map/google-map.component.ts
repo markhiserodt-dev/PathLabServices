@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import {} from 'googlemaps';
 
 @Component({
@@ -8,7 +8,7 @@ import {} from 'googlemaps';
 })
 export class GoogleMapComponent implements OnInit {
 
-  @ViewChild('googleMap', {static: true}) mapElement: any;
+  @ViewChild('googleMap', {static: false}) mapElement: any;
 
   map: google.maps.Map;
   marker: google.maps.Marker;
@@ -16,6 +16,9 @@ export class GoogleMapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
     const mapProperties = {
       center: new google.maps.LatLng(33.773864, -118.009155),
       zoom: 14,
@@ -27,7 +30,7 @@ export class GoogleMapComponent implements OnInit {
       position: new google.maps.LatLng(33.773864, -118.009155),
       map: this.map,
       title: 'PathLab Services',
-    });   
+    });  
   }
 
 }

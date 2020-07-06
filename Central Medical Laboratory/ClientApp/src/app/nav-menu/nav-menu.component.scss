@@ -10,9 +10,14 @@
   background-color: $primary-color-dark;
   box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
 
-  .cml-logo {
-    margin: 20px 10px 20px 30px;
-    color: $primary-color-text;
+  img {
+    height: 70px;
+    width: 160px;
+    padding: 5px 0px 0px 20px;
+  }
+
+  img:hover {
+    cursor: pointer;
   }
 
   .menu-tabs {
