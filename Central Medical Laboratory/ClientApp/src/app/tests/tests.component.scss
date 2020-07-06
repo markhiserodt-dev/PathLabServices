@@ -5,15 +5,10 @@
 
     .results-container {
         width: 75%;
-        padding: 10px 30px 10px 10px;
+        padding: 0px 30px 10px 10px;
 
         .result-header {
             display: flex;
-            
-            button {
-                // padding: 0px 0px 0px 10px;
-                // margin: 0px 0px 0px 40px;
-            }
 
             .alphabet-list {
                 display: flex;
@@ -22,6 +17,13 @@
                     min-width: 0px;
                     padding: 0px 5px 0px 5px;
                     margin: 0px 3px 0px 3px;
+                    border-bottom: 1px solid $primary-color-text !important;
+                    border-radius: 0px;
+                }
+
+                button:hover {
+                  border-bottom: 1px solid $accent-color !important;
+                  border-radius: 0px;
                 }
 
                 button:focus {

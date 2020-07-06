@@ -19,14 +19,11 @@ export class TestsComponent implements OnInit, OnDestroy {
   selectedLetter: string = '';
   resultMessage: string = '';
 
-  pageSize: number = 10;
-  pageIndex: number = 0;
-  pageLength: number = 0;
-  defaultPageEvent: PageEvent = {
+  pageEvent: PageEvent = {
     pageSize: 10,
     pageIndex: 0,
     length: 0
-  };
+  }
 
   private paramsSubscription: Subscription;
 
@@ -39,7 +36,7 @@ export class TestsComponent implements OnInit, OnDestroy {
       if (params['search']) {
         this.searchText = params['search'].toLowerCase();
       }
-      this.onPageChange(this.defaultPageEvent);
+      this.onPageChange(this.pageEvent);
     });
   }
 
@@ -49,13 +46,13 @@ export class TestsComponent implements OnInit, OnDestroy {
     } else {
       this.selectedLetter = letter;
     }
-    this.onPageChange(this.defaultPageEvent);
+    this.onPageChange(this.pageEvent);
   }
 
 
   onPageChange(pageEvent: PageEvent) {
-    this.pageIndex = pageEvent.pageIndex;
-    this.pageSize = pageEvent.pageSize;
+    this.pageEvent.pageIndex = pageEvent.pageIndex;
+    this.pageEvent.pageSize = pageEvent.pageSize;
     this.doSearch();
   }
 
@@ -73,8 +70,8 @@ export class TestsComponent implements OnInit, OnDestroy {
       });
     }
     this.constructResultMessage();
-    this.pageLength = this.filteredTests.length;
-    this.filteredTests = this.filteredTests.slice(this.pageIndex * this.pageSize, this.pageSize * (this.pageIndex + 1));
+    this.pageEvent.length = this.filteredTests.length;
+    this.filteredTests = this.filteredTests.slice(this.pageEvent.pageIndex * this.pageEvent.pageSize, this.pageEvent.pageSize * (this.pageEvent.pageIndex + 1));
   }
 
   private constructResultMessage() {

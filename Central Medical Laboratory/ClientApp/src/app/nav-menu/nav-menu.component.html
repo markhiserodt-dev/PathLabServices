@@ -21,7 +21,7 @@
   <div class="recent-tests" *ngIf="recentTests.length > 0">
     <button mat-button [matMenuTriggerFor]="menu">Recently Viewed Tests<mat-icon>arrow_drop_down</mat-icon></button>
     <mat-menu #menu="matMenu" xPosition="after">
-      <button mat-menu-item class="menu-item" *ngFor="let test of recentTests" [routerLink]="['/test', test.id]">
+      <button mat-menu-item class="menu-item" *ngFor="let test of recentTests" [routerLink]="['/test-detail', test.id]">
         {{test.name}}
       </button>
     </mat-menu>
