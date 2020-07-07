@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Test, Tests } from '../models/tests.model';
@@ -6,13 +6,25 @@ import { Test, Tests } from '../models/tests.model';
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.scss']
+  styleUrls: ['./nav-menu.component.scss'],
+  // animations: [
+  //   trigger('underline', [
+  //     state('state1', style({
+  //       'border-bottom': '2px solid $accent-color'
+  //     })),
+  //     state('state2', style({
+  //       'border-bottom': 'none'
+  //     })),
+  //     transition('state1' => 'state2')
+  //   ])
+  // ]
 })
 export class NavMenuComponent implements OnInit, OnDestroy{
   menuPage: string;
   searchText: string;
   recentTests: Test[] = [];
 
+  isHovering: boolean;
   private routeSubscription: Subscription;
 
   constructor(private router: Router, private route: ActivatedRoute) {}

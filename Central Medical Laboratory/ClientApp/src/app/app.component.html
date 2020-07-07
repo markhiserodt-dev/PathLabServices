@@ -1,5 +1,7 @@
-<body>
+<div class="app">
   <app-nav-menu></app-nav-menu>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
-</body>
+  <div class="routerOutlet"[@routeFadeAnimation]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+  <app-footer ></app-footer>
+</div>
