@@ -69,16 +69,6 @@ html, body {
   height: 100%;
 }
 
-.app {
-  min-height: 100%;
-  width: 100%;
-  display: table;
-}
-
-.routerOutlet {
-  min-height: 550px;
-}
-
 ::ng-deep {
   button:focus {
     outline: none;

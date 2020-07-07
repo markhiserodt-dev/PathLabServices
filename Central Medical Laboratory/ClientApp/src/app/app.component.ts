@@ -1,23 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { slideInAnimation, fadeInAnimation } from './animations'
+import { ActivatedRoute } from '@angular/router';
+import { slideInAnimation } from './animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   animations: [
-    slideInAnimation,
-    fadeInAnimation
+    slideInAnimation
   ]
 })
 export class AppComponent {
+
+  animationState: number;
+  
   clientHeight: number;
 
-  constructor() {
+  constructor( private route: ActivatedRoute) {
     this.clientHeight = window.innerHeight; 
   }
 
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  onActivate($event) {
+    this.animationState = this.route.firstChild.snapshot.data['routeIdx'];
   }
 }

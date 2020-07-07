@@ -1,7 +1,7 @@
 <div class="app">
   <app-nav-menu></app-nav-menu>
-  <div class="routerOutlet"[@routeFadeAnimation]="prepareRoute(outlet)">
-    <router-outlet #outlet="outlet"></router-outlet>
+  <div class="routerOutlet" [ngStyle]="{'min-height': clientHeight + 'px'}" [@routeSlideAnimation]="animationState">
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
   </div>
   <app-footer ></app-footer>
 </div>

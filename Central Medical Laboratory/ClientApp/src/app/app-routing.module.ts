@@ -7,12 +7,12 @@ import { TestDetailComponent } from './test-detail/test-detail.component';
 import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [  
-    { path: '', component: HomeComponent, data: {animation: 'Home'} },
-    { path: 'tests', component: TestsComponent, data: {animation: 'Tests'}},
-    { path: 'tests/:searchText', component: TestsComponent, data: {animation: 'Tests'} },
-    { path: 'test-detail/:id', component: TestDetailComponent, data: {animation: 'Test-Detail'} },
-    { path: 'about', component: AboutComponent, data: {animation: 'About'} },
-    { path: 'contact', component: ContactComponent, data: {animation: 'Contact'} },
+    { path: '', component: HomeComponent, data: {routeIdx: 0} },
+    { path: 'tests', component: TestsComponent, data: {routeIdx: 1}},
+    { path: 'tests/:searchText', component: TestsComponent, data: {routeIdx: 1} },
+    { path: 'test-detail/:id', component: TestDetailComponent, data: {routeIdx: 1} },
+    { path: 'about', component: AboutComponent, data: {routeIdx: 2} },
+    { path: 'contact', component: ContactComponent, data: {routeIdx: 3} },
 
     { path: '**', redirectTo: '' }
 ];
