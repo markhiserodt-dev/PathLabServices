@@ -29,6 +29,12 @@
         button {
           background-color: $primary-color-text;
           color: $primary-text-color;
+          transition: 0.7s;
+        }
+
+        button:hover {
+          background-color: $accent-color;
+          transition: 0.7s;
         }
       }
     }
