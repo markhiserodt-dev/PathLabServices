@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { AnimateModule } from './animate/animate.module';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -50,7 +51,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatCardModule,
     MatPaginatorModule,
     MatListModule,
-    MatChipsModule
+    MatChipsModule,
+    AnimateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
