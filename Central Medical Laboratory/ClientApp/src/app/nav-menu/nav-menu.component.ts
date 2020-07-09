@@ -13,6 +13,8 @@ export class NavMenuComponent implements OnInit, OnDestroy{
   searchText: string;
   recentTests: Test[] = [];
 
+  isOnTestTab: boolean;
+
   private routeSubscription: Subscription;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
@@ -25,7 +27,8 @@ export class NavMenuComponent implements OnInit, OnDestroy{
     this.routeSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.menuPage = event.url;
-        
+        this.isOnTestTab = event.url.indexOf('/test') == 0;
+
         if (this.menuPage.indexOf('/test-detail') == 0) {
           this.addRecentTest(+event.url.slice(13));
         }

@@ -6,7 +6,7 @@
     <button mat-button [routerLink]="['/']" [ngClass]="{selected : menuPage=='/'}"
       >Home</button>
 
-    <button mat-button [routerLink]="['/tests']" [ngClass]="{selected : menuPage=='/tests'}"
+    <button mat-button [routerLink]="['/tests']" [ngClass]="{selected : isOnTestTab}"
       >Tests</button>
 
     <button mat-button [routerLink]="['/about']" [ngClass]="{selected : menuPage=='/about'}"

@@ -41,11 +41,7 @@ export class TestsComponent implements OnInit, OnDestroy {
   }
 
   onLetterClick(letter: string) {
-    if (this.selectedLetter == letter) {
-      this.selectedLetter = '';
-    } else {
-      this.selectedLetter = letter;
-    }
+    this.selectedLetter = this.selectedLetter==letter ? '' : letter;
     this.onPageChange(this.pageEvent);
   }
 
