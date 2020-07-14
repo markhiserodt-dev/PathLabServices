@@ -1,23 +1,30 @@
 <div class="menu-bar">
   
-  <img src="../../assets/pathlab_services_logo_white.png" [routerLink]="['/']">
+  <div class="logo">
+    <img src="../../assets/pathlab_services_logo_white.png" [routerLink]="['/']">
+  </div>
+  
+  <div class="menu">
+    <div class="menu-dropdown">
+      <button mat-icon-button color="accent" [matMenuTriggerFor]="menu"><mat-icon>dehaze</mat-icon></button>
+      <mat-menu #menu="matMenu" xPosition="after">
+        <button mat-menu-item class="menu-item" [routerLink]="['/']">Home</button>
+        <button mat-menu-item class="menu-item" [routerLink]="['/tests']">Tests</button>
+        <button mat-menu-item class="menu-item" [routerLink]="['/about']">About</button>
+        <button mat-menu-item class="menu-item" [routerLink]="['/contact']">Contact</button>
+      </mat-menu>
+    </div>
 
-  <div class="menu-tabs">
-    <button mat-button [routerLink]="['/']" [ngClass]="{selected : menuPage=='/'}"
-      >Home</button>
-
-    <button mat-button [routerLink]="['/tests']" [ngClass]="{selected : isOnTestTab}"
-      >Tests</button>
-
-    <button mat-button [routerLink]="['/about']" [ngClass]="{selected : menuPage=='/about'}"
-    >About</button>
-    
-    <button mat-button [routerLink]="['/contact']" [ngClass]="{selected : menuPage=='/contact'}"
-    >Contact</button>
+    <div class="menu-tabs">
+      <button mat-button [routerLink]="['/']" [ngClass]="{selected : menuPage=='/'}">Home</button>
+      <button mat-button [routerLink]="['/tests']" [ngClass]="{selected : isOnTestTab}">Tests</button>
+      <button mat-button [routerLink]="['/about']" [ngClass]="{selected : menuPage=='/about'}">About</button>
+      <button mat-button [routerLink]="['/contact']" [ngClass]="{selected : menuPage=='/contact'}">Contact</button>
+    </div>
   </div>
 
   <div class="search-bar">
-    <mat-form-field appearance="fill">
+    <mat-form-field>
       <button mat-icon-button matSuffix (click)="searchText=''" [disabled]="!searchText" class="mat-form-field-suffix"><mat-icon class="mat-icon" color="warn">{{searchText ? "clear" : "" }}</mat-icon></button>
       <mat-label>Search tests...</mat-label>
       <input matInput type="text" [(ngModel)]="searchText" (keyup.enter)="onSearchClick()">
@@ -26,12 +33,10 @@
   </div>
 
   <div class="recent-tests" *ngIf="recentTests.length > 0">
-    <button mat-button [matMenuTriggerFor]="menu">Recently Viewed Tests<mat-icon>arrow_drop_down</mat-icon></button>
-    <mat-menu #menu="matMenu" xPosition="after">
+    <button mat-button [matMenuTriggerFor]="tests">Recently Viewed Tests<mat-icon>arrow_drop_down</mat-icon></button>
+    <mat-menu #tests="matMenu" xPosition="after">
       <button mat-menu-item class="menu-item" *ngFor="let test of recentTests" [routerLink]="['/test-detail', test.id]">
         {{test.name}}
       </button>
     </mat-menu>
   </div>
-
-</div>

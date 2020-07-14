@@ -2,8 +2,9 @@
 
 .menu-bar {
   width: 100%;
-  height: 80px;
+  height: 70px;
   display: flex;
+  align-items: center;
   position: sticky;
   z-index: 1;
   top: 0;
@@ -12,75 +13,107 @@
               0 6px 10px 0 rgba(0,0,0,.14),
               0 1px 18px 0 rgba(0,0,0,.12);
 
-  img {
-    height: 70px;
-    width: 160px;
-    padding: 5px 0px 0px 20px;
+  .logo {
+    margin: 0 0.5em 0 1em;
+
+    img {
+      height: 60px;
+      width: 130px;
+    }
+    img:hover {
+      cursor: pointer;
+    }
   }
 
-  img:hover {
-    cursor: pointer;
-  }
+  .menu {
+    margin: 0 1em;
 
-  .menu-tabs {
-    margin: 23px 20px 20px 20px;
-    color: $primary-color-text;
+    .menu-tabs {
+      color: $primary-color-text;
 
-    button {
-      font-size: 16px;
-      padding: 0px;
-      margin: 0px 10px 0px 10px;
-      border-radius: 0px;
-      border-bottom: 2px solid $primary-color-dark;
-    }
+      button {
+        font-size: 1em;
+        margin: 0 .5em 0 .5em;
+        padding: 0;
+        border-radius: 0;
+        border-bottom: 2px solid $primary-color-dark;
+      }
 
-    button:hover {
-      border-bottom: 2px solid $accent-color;
-      transition: 0.6s;
-    }
+      button:hover {
+        border-bottom: 2px solid $accent-color;
+        transition: 0.6s;
+      }
 
-    .selected {
-      border-bottom: 2px solid $accent-color;
+      .selected {
+        border-bottom: 2px solid $accent-color;
+      }
     }
   }
 
   .search-bar {
-    margin: 10px 10px 10px 10px;
+    margin: 0 0.5em;
     background-color: $primary-color-text;
-    border-radius: 30px;
+    border-radius: 2em;
   }
 
   .recent-tests {
-    height: 35px;
+    margin: 0 0.5em;
     color: $primary-color-text;
-    padding: 23px;
     
   }
 }
 
+.menu-side {
+  width: 25%;
+  height: 600px;
+}
+
 ::ng-deep {
   .search-bar {
-
-    .mat-form-field-suffix {
-      display: flex;
+    .mat-form-field-wrapper {
+      padding: 0;
     }
-  
+    .mat-form-field-label {
+      top: 0.1em;
+    }
+    .mat-form-field-can-float.mat-form-field-should-float 
+    .mat-form-field-label, .mat-form-field-can-float .mat-input-server:focus + 
+    .mat-form-field-label-wrapper .mat-form-field-label {
+      transform: translateY(-0.604375em) scale(0.65);
+    }
+    .mat-form-field-label-wrapper {
+      position: unset;
+    }
+    .mat-form-field-flex {
+      align-items: center;
+    }
+    .mat-form-field-suffix {
+      margin-right: .5em;
+    }
     .mat-icon {
       font-size: 125% !important;
     }
-
     .mat-form-field-underline {
       display: none;
     }
-
     .mat-form-field-infix {
-      margin-left: 15px;
+      margin-left: 1.5em;
+      width: 100%;
+      padding: 0.35em 0 0.75em 0;
     }
-
   }
 
   .menu-item:focus {
       outline: none;
   }
+}
 
+@media only screen and (max-width: 768px) {
+  .recent-tests { display: none }
+  .logo { display: none }
+  .menu-tabs { display: none }
+}
+
+@media only screen and (min-width: 769px) {
+  .menu-dropdown { display: none }
 }

@@ -25,6 +25,7 @@ import { MatCardModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatPaginatorModule,
     MatListModule,
     MatChipsModule,
-    AnimateModule
+    AnimateModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,6 +14,7 @@ export class NavMenuComponent implements OnInit, OnDestroy{
   recentTests: Test[] = [];
 
   isOnTestTab: boolean;
+  isMenuOpen: boolean = false;
 
   private routeSubscription: Subscription;
 
@@ -42,6 +43,10 @@ export class NavMenuComponent implements OnInit, OnDestroy{
     } else {
       this.router.navigate(['/tests']);
     }
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
   private addRecentTest(id: number) {
