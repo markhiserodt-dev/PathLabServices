@@ -30,6 +30,7 @@
 
     .menu-tabs {
       color: $primary-color-text;
+      display: flex;
 
       button {
         font-size: 1em;
@@ -109,11 +110,15 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .recent-tests { display: none }
-  .logo { display: none }
-  .menu-tabs { display: none }
+  .recent-tests { display: none !important }
+  .logo { display: none !important }
+  .menu-tabs { display: none !important }
+  .search-bar {
+    position: absolute;
+    right: 0;
+  }
 }
 
 @media only screen and (min-width: 769px) {
-  .menu-dropdown { display: none }
+  .menu-dropdown { display: none !important}
 }
