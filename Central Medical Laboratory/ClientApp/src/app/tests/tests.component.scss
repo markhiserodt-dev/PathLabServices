@@ -5,65 +5,64 @@
 
     .results-container {
         width: 75%;
-        padding: 0px 30px 10px 10px;
 
-        .result-header {
-            display: flex;
+        .filter-container {
+          display: flex;
+          position: relative;
 
-            .alphabet-list {
-                display: flex;
+          .alphabet-list {
+            padding: 0.5em;
 
-                button {
-                    min-width: 0px;
-                    padding: 0px 5px 0px 5px;
-                    margin: 0px 3px 0px 3px;
-                    border-bottom: 1px solid $primary-color-text !important;
-                    border-radius: 0px;
-                }
+              button {
+                  min-width: 0px;
+                  padding: 0px 5px 0px 5px;
+                  margin: 0px 3px 0px 3px;
+                  border-bottom: 1px solid $primary-color-text !important;
+                  border-radius: 0px;
+              }
 
-                button:hover {
+              button:hover {
+                border-bottom: 1px solid $accent-color !important;
+                border-radius: 0px;
+              }
+
+              button:focus {
+                outline: none;
+              }
+
+              .border-bottom {
                   border-bottom: 1px solid $accent-color !important;
                   border-radius: 0px;
-                }
+              }
+          }
 
-                button:focus {
-                  outline: none;
-                }
-
-                .border-bottom {
-                    border-bottom: 1px solid $accent-color !important;
-                    border-radius: 0px;
-                }
-            }
+          .filter-button {
+            box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 
+                        0px 1px 1px 0px rgba(0, 0, 0, 0.14), 
+                        0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+            border-radius: 20px;
+            position: absolute;
+            right: 0;
+            bottom: 0.5em;
+          }
         }
 
         .results {
-            width: 100%;
-            padding: 10px 0px 0px 0px;
 
-            h5 {
-                color: $primary-color;
-                padding: 0px 0px 0px 15px;
-            }
-
-            .result-message {
+            .results-header {
               position: relative;
-              display: flex;
-              width: 100%;
-              padding: 0px 0px 0px 15px;
+              padding-left: 16px; //in pixels to keep exactly with mat-list padding
 
-              .shadowed-circular {
-                box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 
-                            0px 1px 1px 0px rgba(0, 0, 0, 0.14), 
-                            0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-                border-radius: 20px;
+              h5 {
+                color: $primary-color;
               }
-  
-              button {
+
+              mat-form-field {
                 position: absolute;
-                right: 0;
-                bottom: 15px;
+                right: 0.5em;
+                top: 0;
               }
+
             }
 
             .test-link {
@@ -90,7 +89,7 @@
 
     .info {
         width: 25%;
-        padding: 40px 10px 10px 30px;
+        padding: 3em 0 0 2em;
 
         h6 {
             text-align: center;
@@ -101,11 +100,34 @@
 }
 
 ::ng-deep {
-  .shadowed-circular {
+  .filter-button {
     .mat-icon {
-      font-size: 125%;
-      height: 20px;
-      width: 35px;
+      transform: scale(0.8);
     }
+  }
+
+  .results-header {
+    .mat-form-field {
+      .mat-icon {
+        color: rgba(0, 0, 0, 0.54);
+        transform: scale(0.8);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .info { display: none !important };
+  .mat-form-field { display: none !important };
+
+  .filter-button {
+    bottom: -3em !important;
+    right: 0.5em !important;
+    transform: scale(0.8) !important;
+    z-index: 1 !important; 
+  }
+
+  .results-container { 
+    width: 100% !important;
   }
 }

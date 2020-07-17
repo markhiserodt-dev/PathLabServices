@@ -16,6 +16,7 @@ export class TestsComponent implements OnInit, OnDestroy {
   filteredTests: Test[] = [];
 
   searchText: string = '';
+  tempSearchText: string = '';
   selectedLetter: string = '';
   resultMessage: string = '';
 
@@ -68,6 +69,18 @@ export class TestsComponent implements OnInit, OnDestroy {
     this.constructResultMessage();
     this.pageEvent.length = this.filteredTests.length;
     this.filteredTests = this.filteredTests.slice(this.pageEvent.pageIndex * this.pageEvent.pageSize, this.pageEvent.pageSize * (this.pageEvent.pageIndex + 1));
+  }
+
+  onSearchClick() {
+    this.searchText = this.tempSearchText;
+    this.doSearch();
+  }
+
+  clearFilter() {
+    this.searchText = '';
+    this.tempSearchText = '';
+    this.selectedLetter = '';
+    this.doSearch();
   }
 
   private constructResultMessage() {
