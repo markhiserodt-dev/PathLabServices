@@ -17,7 +17,7 @@
 
     <div class="menu-tabs">
       <button mat-button [routerLink]="['/']" [ngClass]="{selected : menuPage=='/'}">Home</button>
-      <button mat-button [routerLink]="['/tests']" [ngClass]="{selected : isOnTestTab}">Tests</button>
+      <button mat-button [routerLink]="['/tests']" [ngClass]="{selected : menuPage=='/tests'}">Tests</button>
       <button mat-button [routerLink]="['/about']" [ngClass]="{selected : menuPage=='/about'}">About</button>
       <button mat-button [routerLink]="['/contact']" [ngClass]="{selected : menuPage=='/contact'}">Contact</button>
     </div>
