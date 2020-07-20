@@ -141,35 +141,39 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .homepage-image { display: none }
+  .homepage-image { display: none !important }
   .homepage-image-right { display: none !important }
 
   .content {
     margin: 0 4em !important;
 
-    .homepage-info {
-      width: 100% !important;
+    .homepage-row {
+      height: 250px !important;
 
-      div {
+      .homepage-info {
         width: 100% !important;
-        text-align: center !important;
 
-        button {
-          margin: 0 !important;
+        div {
+          width: 100% !important;
+          text-align: center !important;
+
+          button {
+            margin: 0 !important;
+          }
         }
+
       }
 
-    }
-
-    .homepage-info-left{
-      width: 100% !important;
-
-      div {
+      .homepage-info-left{
         width: 100% !important;
-        text-align: center !important;
 
-        button {
-          margin: 0 !important;
+        div {
+          width: 100% !important;
+          text-align: center !important;
+
+          button {
+            margin: 0 !important;
+          }
         }
       }
     }
