@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Test, Tests } from '../models/tests.model';
+import { Test, Tests } from '../models/test.model';
 
 @Component({
   selector: 'app-nav-menu',

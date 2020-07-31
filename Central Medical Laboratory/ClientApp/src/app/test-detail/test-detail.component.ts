@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
-import { Test, Tests } from '../models/tests.model';
+import { Test, Tests } from '../models/test.model';
 
 @Component({
   selector: 'app-test-detail',

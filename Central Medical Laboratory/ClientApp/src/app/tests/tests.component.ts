@@ -3,7 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material';
 import { Alphabet } from '../models/alphabet.model';
-import { Test, Tests } from '../models/tests.model';
+import { Test, Tests } from '../models/test.model';
+import { TestsService } from '../services/tests.service';
 
 @Component({
   selector: 'app-tests',
@@ -13,6 +14,7 @@ import { Test, Tests } from '../models/tests.model';
 export class TestsComponent implements OnInit, OnDestroy {
   alphabet = Alphabet;
 
+  tests: Test[] = [];
   filteredTests: Test[] = [];
 
   searchText: string = '';
@@ -26,9 +28,10 @@ export class TestsComponent implements OnInit, OnDestroy {
     length: 0
   }
 
+  private testsServiceSubscription: Subscription;
   private paramsSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private testsService: TestsService) {}
 
   ngOnInit() {
     this.paramsSubscription = this.route.params.subscribe(params => {
@@ -37,6 +40,11 @@ export class TestsComponent implements OnInit, OnDestroy {
       if (params['search']) {
         this.searchText = params['search'].toLowerCase();
       }
+      this.onPageChange(this.pageEvent);
+    });
+
+    this.testsServiceSubscription = this.testsService.getTests().subscribe((tests: Test[]) => {
+      this.tests = tests;
       this.onPageChange(this.pageEvent);
     });
   }
@@ -55,11 +63,11 @@ export class TestsComponent implements OnInit, OnDestroy {
 
   doSearch() {
     if (!this.selectedLetter) {
-      this.filteredTests = Tests.filter((test: Test) => {
+      this.filteredTests = this.tests.filter((test: Test) => {
         return (test.name.toLowerCase().indexOf(this.searchText) > -1);
       });
     } else {
-      this.filteredTests = Tests.filter((test: Test) => {
+      this.filteredTests = this.tests.filter((test: Test) => {
         return (test.name.toLowerCase().indexOf(this.selectedLetter) == 0);
       });
       this.filteredTests = this.filteredTests.filter((test: Test) => {
@@ -99,6 +107,7 @@ export class TestsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.paramsSubscription.unsubscribe();
+    this.testsServiceSubscription.unsubscribe();
   }
 
 }
