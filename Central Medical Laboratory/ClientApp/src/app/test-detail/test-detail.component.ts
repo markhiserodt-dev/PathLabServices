@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Subscription } from 'rxjs';
-import { Test, Tests } from '../models/test.model';
+import { Test } from '../models/test.model';
+import { TestsService } from '../services/tests.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-test-detail',
@@ -12,24 +14,24 @@ export class TestDetailComponent implements OnInit, OnDestroy {
 
   test: Test;
 
-  private paramsSubscription: Subscription;
+  private testsService$: Subscription;       // subscription to a service to make test-related api calls
+  private params$: Subscription;             // subscription to receive route parameters
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private testsService: TestsService) {}
 
   ngOnInit() {
-    this.paramsSubscription = this.route.params.subscribe(params => {
+    this.params$ = this.route.params.subscribe(params => {
       if (params['id']) {
-        let id: number = +params['id'];
-        if (id >= 0 && id < Tests.length) {
-          this.test = Tests[id];
-        } else {
-          this.router.navigate(['/tests']);
-        }
+        let id = Number(params['id']);
+        this.testsService$ = this.testsService.getTest(id).pipe(take(1)).subscribe((test: Test) => {
+          this.test = test;
+        });
       }
     });
   }
 
   ngOnDestroy() {
-    this.paramsSubscription.unsubscribe();
+    this.params$.unsubscribe();
+    this.testsService$.unsubscribe();
   }
 }

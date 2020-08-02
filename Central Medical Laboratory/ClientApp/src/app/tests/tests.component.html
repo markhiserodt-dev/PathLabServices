@@ -24,7 +24,7 @@
             </mat-form-field>
           </div>
           <mat-divider></mat-divider>
-          <mat-list *ngFor="let test of filteredTests">
+          <mat-list *ngFor="let test of tests">
             <mat-list-item>
               <div class="test-link">
                 <a [routerLink]="['/test-detail', test.id]">{{test?.name}}</a>

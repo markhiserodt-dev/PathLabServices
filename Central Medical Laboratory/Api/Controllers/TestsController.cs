@@ -1,4 +1,5 @@
-﻿using Central_Medical_Laboratory.Models;
+﻿using Central_Medical_Laboratory.Api.Models;
+using Central_Medical_Laboratory.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,33 @@ namespace Central_Medical_Laboratory.Api.Controllers
         [HttpGet]
         public IEnumerable<Test> GetTests()
         {
-            return _context.Tests;
+            var tests = _context.Tests;
+            return tests;
+        }
+
+        [HttpGet("{id}")]
+        public Test GetTest([FromRoute] int id)
+        {
+            return _context.Tests.Where(test =>
+                test.Id == id).FirstOrDefault();
+        }
+
+        [HttpPost("search")]
+        public SearchResult SearchTests([FromBody] SearchRequest req)
+        {
+            var searchResult = new SearchResult();
+
+            var tests = _context.Tests.Where(test => 
+                 test.Name.ToLower().IndexOf(req.SearchText) > -1 &&
+                 test.Name.ToLower().IndexOf(req.SelectedLetter) == 0);
+
+            searchResult.length = tests.Count();
+
+            tests = tests.Skip(req.PageIndex * req.PageSize).Take(req.PageSize);
+
+            searchResult.tests = tests;
+
+            return searchResult;
         }
         
     }
