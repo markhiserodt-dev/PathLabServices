@@ -40,3 +40,47 @@
       </button>
     </mat-menu>
   </div>
+
+  <div class="account-icon" (click)="displayAccountModal=!displayAccountModal">
+    <h6 *ngIf="user">Hello, {{user.firstName}}</h6>
+    <button *ngIf="!user" mat-icon-button><mat-icon>account_circle</mat-icon></button>
+    <button class="user" *ngIf="user" mat-mini-fab>{{user?.firstName[0]}}</button>
+  </div>
+
+  <div class="account" *ngIf="displayAccountModal">
+    <mat-card>
+      <div *ngIf="user">
+        <div class="user-info">
+          <button *ngIf="user" mat-fab>{{user.firstName[0]}}</button>
+          <div class="name">
+            <p>{{user.firstName}} {{user.lastName}}</p>
+          </div>
+          <div class="email">
+            <p>{{user.email}}</p>
+          </div>
+          <div></div>
+        </div>
+        <mat-list><mat-divider></mat-divider></mat-list>
+        <div class="user-options">
+          <button mat-button>Sign Out</button>
+        </div>
+      </div>
+
+      <div *ngIf="!user">
+        <div class="info">
+          <button mat-icon-button class="fab"><mat-icon>account_circle</mat-icon></button>
+          <div class="notice">
+            <p>Sign in to an existing account</p>
+            <p>Register to create a new account</p>
+          </div>
+          <mat-list><mat-divider></mat-divider></mat-list>
+          <div class="options">
+            <button mat-button>Sign In</button>
+            <button mat-button>Register</button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+</div>

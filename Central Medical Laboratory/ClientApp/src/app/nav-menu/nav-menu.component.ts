@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Test, Tests } from '../models/test.model';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,9 +10,17 @@ import { Test, Tests } from '../models/test.model';
   styleUrls: ['./nav-menu.component.scss'],
 })
 export class NavMenuComponent implements OnInit, OnDestroy{
-  menuPage: string;
-  searchText: string;
+  menuPage: string = '';
+  searchText: string = '';
   recentTests: Test[] = [];
+  displayAccountModal: boolean = false;
+  user: User;
+  // user: User = {
+  //   email: 'markhiserodt@gmail.com',
+  //   password: '1234',
+  //   firstName: 'Mark',
+  //   lastName: 'Hiserodt'
+  // }
 
   private routeSubscription: Subscription;
 
@@ -27,7 +36,7 @@ export class NavMenuComponent implements OnInit, OnDestroy{
         this.menuPage = event.url;
 
         if (this.menuPage.indexOf('/test-detail') == 0) {
-          this.addRecentTest(+event.url.slice(13));
+          this.addRecentTest(+event.url.slice(this.menuPage.length));
         }
       }
     });
