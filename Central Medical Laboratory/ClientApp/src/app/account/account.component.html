@@ -1,0 +1,54 @@
+<div class="account">
+
+  <div class="user" *ngIf="user">
+    <mat-card>
+      <div class="info">
+        <button *ngIf="user" mat-fab>{{user.firstName[0]}}</button>
+        <div class="name">
+          <p>{{user.firstName}} {{user.lastName}}</p>
+        </div>
+        <div class="email">
+          <p>{{user.email}}</p>
+        </div>
+        <div></div>
+      </div>
+      <mat-list><mat-divider></mat-divider></mat-list>
+      <div class="options">
+        <button mat-button (click)="logout()">Sign Out</button>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="not-user" *ngIf="!user">
+    <mat-card>
+      <div class="info">
+        <p>Sign in to an existing account</p>
+        <p>Register to create a new account</p>
+      </div>
+      <mat-list><mat-divider></mat-divider></mat-list>
+      <div class="credentials">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="text" [(ngModel)]="userCredentials.email">
+          <button mat-icon-button matSuffix (click)="userCredentials.email=''" [disabled]="!userCredentials.email" class="mat-form-field-suffix">
+            <mat-icon class="mat-icon" color="warn">{{userCredentials.email ? "clear" : "" }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="text" [(ngModel)]="userCredentials.password">
+          <button mat-icon-button matSuffix (click)="userCredentials.password=''" [disabled]="!userCredentials.password" class="mat-form-field-suffix">
+            <mat-icon class="mat-icon" color="warn">{{userCredentials.password ? "clear" : "" }}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <mat-list><mat-divider></mat-divider></mat-list>
+      <div class="options">
+        <button mat-button (click)="login()">Sign In</button>
+        <button mat-button (click)="register()">Register</button>
+      </div>
+    </mat-card>
+  </div>
+
+</div>

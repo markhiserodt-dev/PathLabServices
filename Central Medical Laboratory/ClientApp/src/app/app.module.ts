@@ -27,6 +27,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     TestDetailComponent,
     FooterComponent,
     GoogleMapComponent,
-    ContactComponent
+    ContactComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

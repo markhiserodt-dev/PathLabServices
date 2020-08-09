@@ -13,14 +13,8 @@ export class NavMenuComponent implements OnInit, OnDestroy{
   menuPage: string = '';
   searchText: string = '';
   recentTests: Test[] = [];
-  displayAccountModal: boolean = false;
+  displayAccount: boolean = false;
   user: User;
-  // user: User = {
-  //   email: 'markhiserodt@gmail.com',
-  //   password: '1234',
-  //   firstName: 'Mark',
-  //   lastName: 'Hiserodt'
-  // }
 
   private routeSubscription: Subscription;
 
@@ -48,6 +42,10 @@ export class NavMenuComponent implements OnInit, OnDestroy{
     } else {
       this.router.navigate(['/tests']);
     }
+  }
+
+  saveUser(event: User) {
+    this.user = event;
   }
 
   private addRecentTest(id: number) {

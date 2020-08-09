@@ -1,0 +1,96 @@
+@import '../../styles';
+
+.account {
+  position: absolute;
+  right: 1em;
+  top: 4em;
+
+  .user {
+    .mat-card {
+      height: 250px;
+      width: 220px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+  
+      .info {
+        button{
+          width: 82px;
+          height: 82px;
+          margin-bottom: 0.75em;
+          font-size: 2em;
+          background-color: $primary-color-dark;
+          color: $primary-color-text;
+        }
+        .name {
+          p {
+            font-weight: 500;
+            margin: 0;
+          }
+        }
+        .email {
+          p {
+            font-size: 0.8em;
+            font-weight: 400;
+            color: #454444;
+          }
+        }
+      }
+  
+      .options {
+        margin: 0.75em;
+      }
+    }
+  }
+
+  .not-user {
+    .mat-card {
+      height: fit-content;
+      width: 280px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .info {
+        p {
+          margin-bottom: 0.5em;
+          font-size: 0.8em;
+          font-weight: 400;
+          color: #454444;
+        }
+      }
+
+      .credentials {
+        margin-top: 0.5em;
+
+        .mat-form-field {
+          width: 280px;
+          transform: scale(0.8);
+        }
+      }
+  
+      .options {
+        margin-top: 0.9em;
+
+        button {
+          margin: 0 1em 0 1em;
+        }
+      }
+    }
+  }
+
+}
+
+// .fab{
+//   width: 82px;
+//   height: 82px;
+//   margin-bottom: 0.75em;
+//   font-size: 2em;
+
+//   .mat-icon {
+//     transform: scale(4);
+//     color: $primary-color-dark;
+//   }
+// }
