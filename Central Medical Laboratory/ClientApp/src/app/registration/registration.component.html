@@ -1,0 +1,91 @@
+<div class="registration">
+
+  <div class="header">
+    <h4>Account Registration</h4>
+  </div>
+
+  <div class="body flex">
+    <form [formGroup]="registrationForm" class="registration-form">
+
+      <div class="info">
+        <h6>Fill out the form to register an account. You must fill out all required fields in order to submit the form</h6>
+        <p>Note: all fields marked with a (*) are required fields</p>
+      </div>
+
+      <div class="name">
+        <div>
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" formControlName="firstName" required>
+            <mat-error>First name is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" formControlName="lastName" required>
+            <mat-error>Last name is required</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="email">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="text" formControlName="email" required>
+          <mat-error>{{getEmailErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="password">
+
+        <div class="inputs">
+
+          <div class="original">
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+              <button mat-icon-button matSuffix (click)="hide=!hide" tabindex="-1">
+                <mat-icon>{{hide ? "visibility_off" : "visibility"}}</mat-icon>
+              </button>
+              <mat-error>{{getPasswordErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-icon color="accent" (mouseover)="showPasswordHint=true" (mouseout)="showPasswordHint=false" class="password-hint">info</mat-icon>
+          </div>
+
+          <div class="duplicate">
+            <mat-form-field>
+              <mat-label>Confirm Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="passwordMatch" required>
+              <button mat-icon-button matSuffix (click)="hide=!hide" tabindex="-1">
+                <mat-icon>{{hide ? "visibility_off" : "visibility"}}</mat-icon>
+              </button>
+              <mat-error>{{getPasswordMatchErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="hint" *ngIf="showPasswordHint">
+          <mat-card>
+            <p>Password must meet the following criteria:</p>
+            <ul>
+              <li>Minimum length of 8 charactesr</li>
+              <li>At least 1 lowercase letter (a-z)</li>
+              <li>At least 1 uppercase letter (A-Z)</li>
+              <li>At least 1 number (0-9)</li>
+              <li>At least 1 special character (!@#$%^&*)</li>
+            </ul>
+          </mat-card>
+        </div>
+      </div>
+
+      <button mat-button [ngClass]="{'submit-valid' : registrationForm.valid, 'submit-invalid' : registrationForm.invalid}" [disabled]="registrationForm.invalid" (click)="onSubmit()">Submit</button>
+    
+    </form>
+  </div>
+
+</div>

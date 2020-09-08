@@ -16,7 +16,7 @@
         <mat-card>
           <div class="results-header">
             <h5>Results</h5>
-            <h6>{{resultMessage}}</h6>
+            <h6>{{resultMessage ? resultMessage : "loading tests"}}</h6>
             <mat-form-field>
               <mat-label>Search tests...</mat-label>
               <input matInput type="text" [(ngModel)]="tempSearchText" (keyup.enter)="onSearchClick()">

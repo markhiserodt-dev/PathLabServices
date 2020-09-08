@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { slideInAnimation } from './animations';
 
 @Component({
@@ -15,11 +15,20 @@ export class AppComponent {
   
   clientHeight: number;
 
-  constructor( private route: ActivatedRoute) {
+  constructor( private route: ActivatedRoute, private router: Router) {
     this.clientHeight = window.innerHeight; 
   }
 
-  onActivate($event) {
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (!(event instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
+  }
+
+  onActivate() {
     this.animationState = this.route.firstChild.snapshot.data['routeIdx'];
   }
 }

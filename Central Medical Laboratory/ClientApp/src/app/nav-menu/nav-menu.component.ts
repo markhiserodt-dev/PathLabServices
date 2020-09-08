@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, Event } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Test, Tests } from '../models/test.model';
 import { User } from '../models/user.model';
@@ -46,6 +46,10 @@ export class NavMenuComponent implements OnInit, OnDestroy{
 
   saveUser(event: User) {
     this.user = event;
+  }
+
+  onClickedOutside() {
+    this.displayAccount = false;
   }
 
   private addRecentTest(id: number) {

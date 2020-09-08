@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AnimateModule } from './animate/animate.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -14,8 +15,12 @@ import { TestDetailComponent } from './test-detail/test-detail.component';
 import { FooterComponent } from './footer/footer.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { ContactComponent } from './contact/contact.component';
+import { AccountComponent } from './account/account.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ClickOutsideModule } from 'ng-click-outside'
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,7 +32,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,8 @@ import { AccountComponent } from './account/account.component';
     FooterComponent,
     GoogleMapComponent,
     ContactComponent,
-    AccountComponent
+    AccountComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,9 @@ import { AccountComponent } from './account/account.component';
     MatListModule,
     MatChipsModule,
     AnimateModule,
-    MatSidenavModule
+    MatSidenavModule,
+    ReactiveFormsModule,
+    ClickOutsideModule
   ],
   providers: [],
   bootstrap: [AppComponent]

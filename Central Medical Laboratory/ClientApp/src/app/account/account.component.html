@@ -30,23 +30,25 @@
         <mat-form-field>
           <mat-label>Email</mat-label>
           <input matInput type="text" [(ngModel)]="userCredentials.email">
-          <button mat-icon-button matSuffix (click)="userCredentials.email=''" [disabled]="!userCredentials.email" class="mat-form-field-suffix">
-            <mat-icon class="mat-icon" color="warn">{{userCredentials.email ? "clear" : "" }}</mat-icon>
+          <button mat-icon-button matSuffix *ngIf="userCredentials.email" (click)="userCredentials.email=''" [disabled]="!userCredentials.email" tabindex="-1">
+            <mat-icon color="warn">clear</mat-icon>
           </button>
         </mat-form-field>
         <br>
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput type="text" [(ngModel)]="userCredentials.password">
-          <button mat-icon-button matSuffix (click)="userCredentials.password=''" [disabled]="!userCredentials.password" class="mat-form-field-suffix">
-            <mat-icon class="mat-icon" color="warn">{{userCredentials.password ? "clear" : "" }}</mat-icon>
-          </button>
-        </mat-form-field>
+        <div class="password">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput [type]="passwordHidden ? 'password' : 'text'" [(ngModel)]="userCredentials.password">
+            <button mat-icon-button matSuffix *ngIf="userCredentials.password" (click)="passwordHidden=!passwordHidden" tabindex="-1">
+              <mat-icon>{{passwordHidden ? "visibility_off" : "visibility"}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
       </div>
       <mat-list><mat-divider></mat-divider></mat-list>
       <div class="options">
         <button mat-button (click)="login()">Sign In</button>
-        <button mat-button (click)="register()">Register</button>
+        <button mat-button [routerLink]="['/registration']">Register</button>
       </div>
     </mat-card>
   </div>

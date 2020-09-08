@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 import { Subscription } from 'rxjs'
 import { AccountService } from '../services/account.service';
 import { User } from '../models/user.model';
-import { UserCredentials } from '../models/user-credentials';
+import { UserCredentials } from '../models/user-credentials.model';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -17,8 +17,11 @@ export class AccountComponent implements OnInit, OnDestroy {
     password: ''
   };
 
+  passwordHidden: boolean = true;
+
   @Input() user: User;
   @Output() userEvent = new EventEmitter<User>();
+  @Output() closeEvent = new EventEmitter<Boolean>();
 
   private accountService$: Subscription;
 

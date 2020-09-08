@@ -1,0 +1,100 @@
+@import '../../styles';
+
+.registration {
+
+  .registration-form {
+    width: 70%;
+
+    div {
+      margin: 0.5em 0 0.5em 0;
+    }
+
+    .info {
+      h6 {
+        color: rgba(0, 0, 0, 0.74);
+        font-size: 15px;
+      }
+
+      p {
+        color: rgba(0, 0, 0, 0.54);
+        font-size: 12px;
+      }
+    }
+
+    .name {
+      display: flex;
+
+      div {
+        width: 50%;
+
+        .mat-form-field {
+          width: 80%;
+        }
+      }
+
+    }
+
+    .email {
+      .mat-form-field {
+        width: 40%;
+      }
+    }
+
+    .password {
+      display: flex;
+      height: 170px;
+
+      .inputs {
+        flex-direction: column;
+        width: 50%;
+
+        .original {
+          display: flex;
+          align-items: center;
+
+          .password-hint {
+            transform: scale(0.8);
+            opacity: 0.75;
+          }
+
+          .password-hint:hover {
+            cursor: default;
+          }
+        }
+
+        .mat-form-field {
+          width: 80%;
+
+          button {
+            .mat-icon {
+              color: $divider-color;
+            }
+          }
+        }
+      }
+
+      .hint {
+        width: 50%;
+
+        .mat-card {
+          font-size: 13px;
+          ul { 
+            color: rgba(0, 0, 0, 0.65);
+          }
+        }
+      }
+    }
+
+    .submit-valid {
+      background-color: $accent-color;
+      color: $primary-color-text;
+      transition: 0.5s;
+    }
+
+    .submit-invalid {
+      background-color: rgba(0, 0, 0, 0.10);
+      transition: 0.5s;
+    }
+  }
+
+}

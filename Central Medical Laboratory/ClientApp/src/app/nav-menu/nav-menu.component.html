@@ -41,12 +41,14 @@
     </mat-menu>
   </div>
 
-  <div class="account-icon" (click)="displayAccount=!displayAccount">
-    <h6 *ngIf="user">Hello, {{user.firstName}}</h6>
-    <button *ngIf="!user" mat-icon-button><mat-icon>account_circle</mat-icon></button>
-    <button class="user" *ngIf="user" mat-mini-fab>{{user.firstName[0]}}</button>
-  </div>
+  <div class="account" (clickOutside)="onClickedOutside()">
+    <div class="account-icon" (click)="displayAccount=!displayAccount">
+      <h6 *ngIf="user">Hello, {{user.firstName}}</h6>
+      <button *ngIf="!user" mat-icon-button><mat-icon>account_circle</mat-icon></button>
+      <button class="user" *ngIf="user" mat-mini-fab>{{user.firstName[0]}}</button>
+    </div>
 
-  <app-account *ngIf="displayAccount" [user]="user" (userEvent)=saveUser($event)></app-account>
+    <app-account *ngIf="displayAccount" [user]="user" (userEvent)=saveUser($event)></app-account>
+  </div>
 
 </div>

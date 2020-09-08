@@ -5,6 +5,7 @@ import { TestsComponent } from './tests/tests.component';
 import { AboutComponent } from './about/about.component';
 import { TestDetailComponent } from './test-detail/test-detail.component';
 import { ContactComponent } from './contact/contact.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [  
     { path: '', component: HomeComponent, data: {routeIdx: 0} },
@@ -13,6 +14,8 @@ const routes: Routes = [
     { path: 'test-detail/:id', component: TestDetailComponent, data: {routeIdx: 1} },
     { path: 'about', component: AboutComponent, data: {routeIdx: 2} },
     { path: 'contact', component: ContactComponent, data: {routeIdx: 3} },
+
+    { path: 'registration', component: RegistrationComponent, data: {routeIdx: 4} },
 
     { path: '**', redirectTo: '' }
 ];

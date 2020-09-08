@@ -56,9 +56,9 @@
       .info {
         p {
           margin-bottom: 0.5em;
-          font-size: 0.8em;
+          font-size: 0.9em;
           font-weight: 400;
-          color: #454444;
+          color: rgba(0, 0, 0, 0.84);
         }
       }
 
@@ -66,8 +66,16 @@
         margin-top: 0.5em;
 
         .mat-form-field {
-          width: 280px;
-          transform: scale(0.8);
+          width: 230px;
+          transform: scale(0.9)
+        }
+
+        .password {
+          button {
+            .mat-icon {
+              color: $divider-color;
+            }
+          }
         }
       }
   
@@ -75,7 +83,8 @@
         margin-top: 0.9em;
 
         button {
-          margin: 0 1em 0 1em;
+          margin: 0 1.5em 0 1.5em;
+          color: rgba(0, 0, 0, 0.84);
         }
       }
     }
