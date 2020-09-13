@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, Inject, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd, Event } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Test, Tests } from '../models/test.model';
@@ -17,6 +17,8 @@ export class NavMenuComponent implements OnInit, OnDestroy{
   user: User;
 
   private routeSubscription: Subscription;
+
+  @ViewChild('accountIconEmailClear', { static: false }) public accountIconEmailClear: ElementRef;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -48,8 +50,14 @@ export class NavMenuComponent implements OnInit, OnDestroy{
     this.user = event;
   }
 
-  onClickedOutside() {
-    this.displayAccount = false;
+  /* Bug-01: When user clicks on clear email icon inside the account component,
+             this component's onClickedOutside() gets fired. Not sure root cause.
+             Current fix is to check the event explicitly if it is the account icon.
+  */
+  onClickedOutside(event: any) {
+    if (event.target.id !== 'accountIconEmailClear') {
+      this.displayAccount = false;
+    }
   }
 
   private addRecentTest(id: number) {

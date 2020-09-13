@@ -36,7 +36,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log("form submitted");
   }
 
   getEmailErrorMessage(): string {

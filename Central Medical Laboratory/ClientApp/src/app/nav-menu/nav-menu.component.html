@@ -41,7 +41,7 @@
     </mat-menu>
   </div>
 
-  <div class="account" (clickOutside)="onClickedOutside()">
+  <div class="account" (clickOutside)="onClickedOutside($event)">
     <div class="account-icon" (click)="displayAccount=!displayAccount">
       <h6 *ngIf="user">Hello, {{user.firstName}}</h6>
       <button *ngIf="!user" mat-icon-button><mat-icon>account_circle</mat-icon></button>

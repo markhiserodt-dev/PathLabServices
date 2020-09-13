@@ -20,10 +20,9 @@ export class TestsComponent implements OnInit, OnDestroy {
 
   tests: Test[] = [];         // the tests displayed on the current page
 
-  searchText: string = '';        // text received throught the route or user input
   tempSearchText: string = '';    // temporary holder while user is typing text in input
-  selectedLetter: string = '';    // user selected letter
   resultMessage: string = '';     // message to display after a search is complete
+  loadingResults: boolean = true;   // boolean to know when user is waiting for api call to return
 
   pageEvent: PageEvent = {
     pageSize: 10,             // number of items to display on the page
@@ -34,8 +33,8 @@ export class TestsComponent implements OnInit, OnDestroy {
   searchRequest: SearchRequest = {          // search request object to send through our test service
     pageSize: this.pageEvent.pageSize,
     pageIndex: this.pageEvent.pageIndex,
-    selectedLetter: this.selectedLetter,
-    searchText: this.searchText,
+    selectedLetter: '',                     // user selected letter
+    searchText: '',                         // text received throught the route or user input
   };
 
   private testsService$: Subscription;       // subscription to a service to make test-related api calls
@@ -48,10 +47,10 @@ export class TestsComponent implements OnInit, OnDestroy {
   */
   ngOnInit() {
     this.params$ = this.route.params.subscribe(params => {
-      this.searchText = '';
-      this.selectedLetter = '';
+      this.searchRequest.searchText= '';
+      this.searchRequest.selectedLetter = '';
       if (params['search']) {
-        this.searchText = params['search'].toLowerCase();
+        this.searchRequest.searchText = params['search'].toLowerCase();
       }
       this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
     });
@@ -63,10 +62,12 @@ export class TestsComponent implements OnInit, OnDestroy {
     Should construct the result message to display 
   */
   doSearch() {
+    this.loadingResults = true;
     this.testsService$ = this.testsService.searchTests(this.searchRequest).pipe(take(1)).subscribe((res: SearchResponse) => {
       this.tests = res.tests;
       this.pageEvent.length = res.length;
       this.constructResultMessage();
+      this.loadingResults = false;
     });
   }
 
@@ -84,7 +85,7 @@ export class TestsComponent implements OnInit, OnDestroy {
     Should call a pageChange, setting the pageIndex back to the first page
   */
   onLetterClick(letter: string) {
-    this.selectedLetter = this.selectedLetter==letter ? '' : letter;
+    this.searchRequest.selectedLetter = this.searchRequest.selectedLetter==letter ? '' : letter;
     this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
   }
 
@@ -93,18 +94,18 @@ export class TestsComponent implements OnInit, OnDestroy {
     Should call a pageChange setting the pageIndex back to the first page
   */
   onSearchClick() {
-    this.searchText = this.tempSearchText;
+    this.searchRequest.searchText = this.tempSearchText;
     this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
   }
 
   /*
-    Should set searchText to what the user has typed (tempSearchText)
+    Should set all variables back to defaults
     Should call a pageChange setting the pageIndex back to the first page
   */
   clearFilter() {
-    this.searchText = '';
+    this.searchRequest.searchText = '';
     this.tempSearchText = '';
-    this.selectedLetter = '';
+    this.searchRequest.selectedLetter = '';
     this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
   }
 
@@ -115,13 +116,13 @@ export class TestsComponent implements OnInit, OnDestroy {
         - pageEvent.length
   */
   private constructResultMessage() {
-    if (this.selectedLetter && this.searchText && this.pageEvent.length > 0) {
-      this.resultMessage = 'showing ' + this.pageEvent.length + ' results starting with \'' + this.selectedLetter + '\' containing \'' + this.searchText + '\''; 
-    } else if (this.selectedLetter && !this.searchText && this.pageEvent.length > 0) {
-      this.resultMessage = 'showing ' + this.pageEvent.length + ' results starting with \'' + this.selectedLetter + '\'';
-    } else if (!this.selectedLetter && this.searchText && this.pageEvent.length > 0) {
-      this.resultMessage = 'showing ' + this.pageEvent.length + ' results containing \'' + this.searchText + '\''; 
-    } else if (!this.selectedLetter && !this.searchText) {
+    if (this.searchRequest.selectedLetter && this.searchRequest.searchText && this.pageEvent.length > 0) {
+      this.resultMessage = 'showing ' + this.pageEvent.length + ' results starting with \'' + this.searchRequest.selectedLetter + '\' containing \'' + this.searchRequest.searchText + '\''; 
+    } else if (this.searchRequest.selectedLetter && !this.searchRequest.searchText && this.pageEvent.length > 0) {
+      this.resultMessage = 'showing ' + this.pageEvent.length + ' results starting with \'' + this.searchRequest.selectedLetter + '\'';
+    } else if (!this.searchRequest.selectedLetter && this.searchRequest.searchText && this.pageEvent.length > 0) {
+      this.resultMessage = 'showing ' + this.pageEvent.length + ' results containing \'' + this.searchRequest.searchText + '\''; 
+    } else if (!this.searchRequest.selectedLetter && !this.searchRequest.searchText) {
       this.resultMessage = 'showing all ' + this.pageEvent.length + ' results';
     } else {
       this.resultMessage = 'no results matching the search criteria';
@@ -134,6 +135,9 @@ export class TestsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.params$.unsubscribe();
     this.testsService$.unsubscribe();
+    this.tests = [];
+    this.searchRequest = null;
+    this.pageEvent = null;
   }
 
 }

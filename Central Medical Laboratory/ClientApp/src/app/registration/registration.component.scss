@@ -97,4 +97,57 @@
     }
   }
 
+  .profile-container {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .profile {
+      margin-bottom: 3em;
+      text-align: center;
+      border-left: 1px solid $divider-color;
+      padding-left: 4em;
+
+      div {
+        margin: 1em 0 1em 0;
+      }
+
+      h4 {
+        margin-bottom: 1em;
+      }
+
+      button{
+        width: 12em;
+        height: 12em;
+        background-color: $primary-color-dark;
+        color: $primary-color-text;
+      }
+      .name {
+        min-height: 30px;
+        p {
+          font-size: 1.25em;
+          font-weight: 500;
+          margin: 0;
+        }
+      }
+      .email {
+        min-height: 24px;
+        p {
+          font-size: 1em;
+          font-weight: 400;
+          color: #454444;
+        }
+      }
+    }
+  }
+
+}
+
+::ng-deep {
+  .profile-icon {
+    .mat-button-wrapper {
+      font-size: 4em;
+    }
+  }
 }

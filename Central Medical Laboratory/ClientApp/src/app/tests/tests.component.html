@@ -8,15 +8,15 @@
     <div class="results-container">
       <div class="filter-container">
         <div class="alphabet-list">
-          <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'border-bottom' : letter==selectedLetter}">{{letter}}</button>
+          <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'border-bottom' : letter==searchRequest.selectedLetter}">{{letter}}</button>
         </div>
-        <button mat-button class="filter-button" color="primary" *ngIf="searchText || selectedLetter" (click)="clearFilter()">clear filter<mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
+        <button mat-button class="filter-button" color="primary" *ngIf="searchRequest.searchText || searchRequest.selectedLetter" (click)="clearFilter()">clear filter<mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
       </div>
       <div class="results">
         <mat-card>
           <div class="results-header">
             <h5>Results</h5>
-            <h6>{{resultMessage ? resultMessage : "loading tests"}}</h6>
+            <h6>{{!loadingResults ? resultMessage : "loading tests..."}}</h6>
             <mat-form-field>
               <mat-label>Search tests...</mat-label>
               <input matInput type="text" [(ngModel)]="tempSearchText" (keyup.enter)="onSearchClick()">

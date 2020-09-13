@@ -30,7 +30,7 @@ namespace Central_Medical_Laboratory.Api.Controllers
 
             var user = Authenticate(usercredentials);
 
-            if(user != null)
+            if (user != null)
             {
                 user.Jwt = GenerateJSONWebToken(usercredentials);
                 response = Ok(user);
@@ -43,7 +43,7 @@ namespace Central_Medical_Laboratory.Api.Controllers
         {
             User user = null;
 
-            if(usercredentials.Email == "markhiserodt@gmail.com" && usercredentials.Password == "1234")
+            if (usercredentials.Email == "markhiserodt@gmail.com" && usercredentials.Password == "1234")
             {
                 user = new User{
                     Email = usercredentials.Email,
