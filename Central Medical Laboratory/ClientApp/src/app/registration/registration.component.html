@@ -5,7 +5,7 @@
   </div>
 
   <div class="body flex">
-    <form [formGroup]="registrationForm" class="registration-form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registrationForm" class="registration-form">
 
       <div class="info">
         <h6>Fill out the form to register an account. You must fill out all required fields in order to submit the form</h6>
@@ -83,7 +83,7 @@
         </div>
       </div>
 
-      <button mat-button [ngClass]="{'submit-valid' : registrationForm.valid, 'submit-invalid' : registrationForm.invalid}" [disabled]="registrationForm.invalid" type="submit">Submit</button>
+      <button mat-button [ngClass]="{'submit-valid' : registrationForm.valid, 'submit-invalid' : registrationForm.invalid}" [disabled]="registrationForm.invalid" (click)="onSubmit()">Submit</button>
     
     </form>
     
@@ -91,7 +91,7 @@
       <div class="profile-container">
         <div class="profile">
           <h4>Profile</h4>
-          <button mat-fab class="profile-icon">{{registrationForm.get("firstName").value[0]}}</button>
+          <button mat-fab class="profile-icon">{{registrationForm.get("firstName")?.value[0]}}</button>
           <div class="name">
             <p>{{registrationForm.get("firstName").value}} {{registrationForm.get("lastName").value}}</p>
           </div>

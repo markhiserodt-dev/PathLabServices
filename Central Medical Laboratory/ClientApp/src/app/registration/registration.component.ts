@@ -2,6 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { PasswordValidator } from '../shared/password-validator.directive';
 import { PasswordMatchValidator } from '../shared/password-match-validator.directive';
+import { AccountService } from '../services/account.service';
+import { Subscription } from 'rxjs';
+import { User } from '../models/user.model';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registration',
@@ -28,14 +32,25 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   hide: boolean = true;
   showPasswordHint: boolean = false;
 
+  accountService$: Subscription;
 
-  constructor() {}
+
+  constructor(private accountService: AccountService) {}
 
   ngOnInit() {
 
   }
 
   onSubmit() {
+    const user: User = {
+      firstName: this.registrationForm.get('firstName').value,
+      lastName: this.registrationForm.get('lastName').value,
+      email: this.registrationForm.get('email').value,
+      password: this.registrationForm.get('password').value
+    }
+    this.accountService$ = this.accountService.register(user).pipe(take(1)).subscribe((user: User) => {
+      this.resetRegistrationForm(this.registrationForm);
+    });
   }
 
   getEmailErrorMessage(): string {
@@ -75,7 +90,29 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  private resetRegistrationForm(group: FormGroup): void {
 
+    Object.keys(group.controls).forEach((key: string) => {
+
+      // Get a reference to the control using the FormGroup.get() method
+      const abstractControl = group.get(key);
+
+      // If the control is an instance of FormGroup i.e a nested FormGroup
+      // then recursively call this same method (resetRegistrationForm) passing it
+      // the FormGroup so we can get to the form controls in it
+
+      if (abstractControl instanceof FormGroup) {
+        this.resetRegistrationForm(abstractControl);
+      } else {
+        // If the control is not a FormGroup then we know it's a FormControl
+        abstractControl.setValue('');
+        abstractControl.setErrors(null);
+      }
+
+    });
+  }
+
+  ngOnDestroy() {
+    
   }
 }

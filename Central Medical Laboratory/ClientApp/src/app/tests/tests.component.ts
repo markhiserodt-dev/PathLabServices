@@ -135,9 +135,6 @@ export class TestsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.params$.unsubscribe();
     this.testsService$.unsubscribe();
-    this.tests = [];
-    this.searchRequest = null;
-    this.pageEvent = null;
   }
 
 }

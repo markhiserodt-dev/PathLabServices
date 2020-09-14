@@ -7,6 +7,7 @@ using System.Text;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Central_Medical_Laboratory.Models;
+using System.Linq;
 
 namespace Central_Medical_Laboratory.Api.Controllers
 {
@@ -23,37 +24,40 @@ namespace Central_Medical_Laboratory.Api.Controllers
             _context = context;
         }
 
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] User user)
+        {
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            return Ok(user);
+        }
+
         [HttpPost("login")]
-        public IActionResult Login([FromBody] UserCredentials usercredentials)
+        public IActionResult Login([FromBody] UserCredentials userCredentials)
         {
             IActionResult response = Unauthorized();
 
-            var user = Authenticate(usercredentials);
+            var user = Authenticate(userCredentials);
 
             if (user != null)
             {
-                user.Jwt = GenerateJSONWebToken(usercredentials);
+                user.Jwt = GenerateJSONWebToken(userCredentials);
                 response = Ok(user);
             }
 
             return response;
         }
 
-        private User Authenticate(UserCredentials usercredentials)
+        private User Authenticate(UserCredentials userCredentials)
         {
-            User user = null;
+            User user = _context.Users.FirstOrDefault(user => user.Email == userCredentials.Email);
 
-            if (usercredentials.Email == "markhiserodt@gmail.com" && usercredentials.Password == "1234")
+            if (user.Password == userCredentials.Password)
             {
-                user = new User{
-                    Email = usercredentials.Email,
-                    Password = usercredentials.Password,
-                    FirstName = "Mark",
-                    LastName = "Hiserodt"
-                };
+                return user;
             }
 
-            return user;
+            return null;
         }
 
         private string GenerateJSONWebToken(UserCredentials usercredentials)
