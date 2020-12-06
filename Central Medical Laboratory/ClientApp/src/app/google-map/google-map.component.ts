@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import {} from 'googlemaps';
 
 @Component({
@@ -6,7 +6,7 @@ import {} from 'googlemaps';
   templateUrl: './google-map.component.html',
   styleUrls: ['./google-map.component.scss']
 })
-export class GoogleMapComponent implements OnInit {
+export class GoogleMapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('googleMap', {static: false}) mapElement: any;
 
@@ -31,6 +31,10 @@ export class GoogleMapComponent implements OnInit {
       map: this.map,
       title: 'PathLab Services',
     });  
+  }
+
+  ngOnDestroy() {
+    this.mapElement = undefined;
   }
 
 }

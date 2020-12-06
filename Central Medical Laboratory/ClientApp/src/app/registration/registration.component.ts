@@ -1,18 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { PasswordValidator } from '../shared/password-validator.directive';
 import { PasswordMatchValidator } from '../shared/password-match-validator.directive';
 import { AccountService } from '../services/account.service';
-import { Subscription } from 'rxjs';
 import { User } from '../models/user.model';
 import { take } from 'rxjs/operators';
+import { BaseComponent } from '../shared/base-component';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit, OnDestroy {
+export class RegistrationComponent extends BaseComponent implements OnInit {
 
   registrationForm: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
     password: new FormControl('', [ Validators.required, 
                                     Validators.minLength(8), 
-                                    PasswordValidator(),]),
+                                    PasswordValidator() ]),
 
     passwordMatch: new FormControl('', [ PasswordMatchValidator() ])
   });
@@ -32,10 +32,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   hide: boolean = true;
   showPasswordHint: boolean = false;
 
-  accountService$: Subscription;
-
-
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService) {
+    super();
+  }
 
   ngOnInit() {
 
@@ -48,7 +47,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       email: this.registrationForm.get('email').value,
       password: this.registrationForm.get('password').value
     }
-    this.accountService$ = this.accountService.register(user).pipe(take(1)).subscribe((user: User) => {
+    this.accountService.register(user).pipe(take(1)).subscribe((user: User) => {
       this.resetRegistrationForm(this.registrationForm);
     });
   }
@@ -112,7 +111,4 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    
-  }
 }

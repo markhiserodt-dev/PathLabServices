@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 import { slideInAnimation } from './animations';
+import { BaseComponent } from './shared/base-component';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +11,18 @@ import { slideInAnimation } from './animations';
     slideInAnimation
   ]
 })
-export class AppComponent {
+export class AppComponent extends BaseComponent {
 
   animationState: number;
-  
   clientHeight: number;
 
   constructor( private route: ActivatedRoute, private router: Router) {
+    super();
     this.clientHeight = window.innerHeight; 
   }
 
   ngOnInit() {
-    this.router.events.subscribe((event) => {
+    this.router.events.pipe(takeUntil(this.ngUnsubscribe)).subscribe((event) => {
       if (!(event instanceof NavigationEnd)) {
         return;
       }

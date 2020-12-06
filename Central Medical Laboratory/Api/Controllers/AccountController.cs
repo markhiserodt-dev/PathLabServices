@@ -52,7 +52,7 @@ namespace Central_Medical_Laboratory.Api.Controllers
         {
             User user = _context.Users.FirstOrDefault(user => user.Email == userCredentials.Email);
 
-            if (user.Password == userCredentials.Password)
+            if (user != null && user.Password == userCredentials.Password)
             {
                 return user;
             }

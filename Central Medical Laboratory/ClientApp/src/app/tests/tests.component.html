@@ -19,7 +19,7 @@
             <h6>{{!loadingResults ? resultMessage : "loading tests..."}}</h6>
             <mat-form-field>
               <mat-label>Search tests...</mat-label>
-              <input matInput type="text" [(ngModel)]="tempSearchText" (keyup.enter)="onSearchClick()">
+              <input matInput type="text" [(ngModel)]="searchRequest.searchText" (keyup.enter)="onSearchClick()">
               <button mat-icon-button matSuffix class="mat-form-field-suffix" (click)="onSearchClick()"><mat-icon class="mat-icon">search</mat-icon></button>
             </mat-form-field>
           </div>
@@ -41,6 +41,7 @@
     </div>
 
     <div class="info">
+      <button mat-button color="primary" (click)="addTestModal=!addTestModal">Add Test</button>
       <mat-card>
         <h6>Info</h6>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse animi, necessitatibus optio iste corrupti maxime ex possimus sit doloribus quam quod, dolores a enim vel. In nisi delectus similique itaque!</p>

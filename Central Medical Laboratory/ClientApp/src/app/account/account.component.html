@@ -20,37 +20,46 @@
   </div>
 
   <div class="not-user" *ngIf="!user">
-    <mat-card>
-      <div class="info">
-        <p>Sign in to an existing account</p>
-        <p>Register to create a new account</p>
-      </div>
-      <mat-list><mat-divider></mat-divider></mat-list>
-      <div class="credentials">
-        <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput type="text" [(ngModel)]="userCredentials.email">
-          <button mat-icon-button matSuffix *ngIf="userCredentials.email" (click)="userCredentials.email=''" [disabled]="!userCredentials.email" tabindex="-1">
-            <mat-icon #accountIconEmailClear id="accountIconEmailClear" color="warn">clear</mat-icon>
-          </button>
-        </mat-form-field>
-        <br>
-        <div class="password">
-          <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input matInput [type]="passwordHidden ? 'password' : 'text'" [(ngModel)]="userCredentials.password" (keyup.enter)="login()">
-            <button mat-icon-button matSuffix *ngIf="userCredentials.password" (click)="passwordHidden=!passwordHidden" tabindex="-1">
-              <mat-icon>{{passwordHidden ? "visibility_off" : "visibility"}}</mat-icon>
-            </button>
-          </mat-form-field>
+    <form [formGroup]="loginForm">
+      <mat-card>
+        <div class="info">
+          <p>Sign in to an existing account</p>
+          <p>Register to create a new account</p>
         </div>
-      </div>
-      <mat-list><mat-divider></mat-divider></mat-list>
-      <div class="options">
-        <button mat-button (click)="login()">Sign In</button>
-        <button mat-button [routerLink]="['/registration']">Register</button>
-      </div>
-    </mat-card>
+        <mat-list><mat-divider></mat-divider></mat-list>
+        <div class="login-error">
+          <p>{{loginErrorMessage}}</p>
+        </div>
+        <div class="credentials" (keyup.enter)="login()">
+          <div>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput type="text" formControlName="email">
+              <mat-error>{{getEmailErrorMessage()}}</mat-error>
+              <button id="accountButtonEmailClear" type="button" mat-icon-button matSuffix *ngIf="loginForm.get('email').value" [disabled]="!loginForm.get('email').value" (click)="clearEmail()" tabindex="-1">
+                <mat-icon id="accountIconEmailClear" color="warn">clear</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <br>
+          <div class="password">
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input matInput [type]="passwordHidden ? 'password' : 'text'" formControlName="password">
+              <mat-error>Password is required to sign in</mat-error>
+              <button mat-icon-button matSuffix type="button" *ngIf="loginForm.get('password').value" (click)="passwordHidden=!passwordHidden" tabindex="-1">
+                <mat-icon>{{passwordHidden ? "visibility_off" : "visibility"}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-list><mat-divider></mat-divider></mat-list>
+        <div class="options">
+          <button mat-button [ngClass]="{'login-valid' : loginForm.valid, 'login-invalid' : loginForm.invalid}" [disabled]="loginForm.invalid" (click)="login()">Sign In</button>
+          <button mat-button [routerLink]="['/registration']" (click)="closeAccountModal()">Register</button>
+        </div>
+      </mat-card> 
+    </form>
   </div>
 
 </div>

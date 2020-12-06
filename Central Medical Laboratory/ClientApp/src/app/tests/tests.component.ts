@@ -1,28 +1,29 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material';
 import { Alphabet } from '../models/alphabet.model';
 import { Test } from '../models/test.model';
 import { TestsService } from '../services/tests.service';
-import { take } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { SearchResponse } from '../models/search-response.model';
 import { SearchRequest } from '../models/search-request.model';
+import { BaseComponent } from '../shared/base-component';
 
 @Component({
   selector: 'app-tests',
   templateUrl: './tests.component.html',
   styleUrls: ['./tests.component.scss']
 })
-export class TestsComponent implements OnInit, OnDestroy {
+export class TestsComponent extends BaseComponent implements OnInit {
 
   alphabet = Alphabet;        // const string array of the alphabet in lowercase
 
   tests: Test[] = [];         // the tests displayed on the current page
 
-  tempSearchText: string = '';    // temporary holder while user is typing text in input
   resultMessage: string = '';     // message to display after a search is complete
   loadingResults: boolean = true;   // boolean to know when user is waiting for api call to return
+
+  addTestModal: boolean = false; // boolean to open/close the addTest Modal
 
   pageEvent: PageEvent = {
     pageSize: 10,             // number of items to display on the page
@@ -37,16 +38,15 @@ export class TestsComponent implements OnInit, OnDestroy {
     searchText: '',                         // text received throught the route or user input
   };
 
-  private testsService$: Subscription;       // subscription to a service to make test-related api calls
-  private params$: Subscription;             // subscription to receive route parameters
-
-  constructor(private route: ActivatedRoute, private testsService: TestsService) {}
+  constructor(private route: ActivatedRoute, private testsService: TestsService) {
+    super();
+  }
 
   /*
     Should subscribe to the route parameters and call an initial search through a pageChange
   */
   ngOnInit() {
-    this.params$ = this.route.params.subscribe(params => {
+    this.route.params.pipe(takeUntil(this.ngUnsubscribe)).subscribe(params => {
       this.searchRequest.searchText= '';
       this.searchRequest.selectedLetter = '';
       if (params['search']) {
@@ -63,7 +63,7 @@ export class TestsComponent implements OnInit, OnDestroy {
   */
   doSearch() {
     this.loadingResults = true;
-    this.testsService$ = this.testsService.searchTests(this.searchRequest).pipe(take(1)).subscribe((res: SearchResponse) => {
+    this.testsService.searchTests(this.searchRequest).pipe(take(1)).subscribe((res: SearchResponse) => {
       this.tests = res.tests;
       this.pageEvent.length = res.length;
       this.constructResultMessage();
@@ -90,11 +90,9 @@ export class TestsComponent implements OnInit, OnDestroy {
   }
 
   /*
-    Should set searchText to what the user has typed (tempSearchText)
     Should call a pageChange setting the pageIndex back to the first page
   */
   onSearchClick() {
-    this.searchRequest.searchText = this.tempSearchText;
     this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
   }
 
@@ -104,7 +102,6 @@ export class TestsComponent implements OnInit, OnDestroy {
   */
   clearFilter() {
     this.searchRequest.searchText = '';
-    this.tempSearchText = '';
     this.searchRequest.selectedLetter = '';
     this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
   }
@@ -127,14 +124,6 @@ export class TestsComponent implements OnInit, OnDestroy {
     } else {
       this.resultMessage = 'no results matching the search criteria';
     }
-  }
-
-  /*
-    Should unsubscribe from all subscriptions
-  */
-  ngOnDestroy() {
-    this.params$.unsubscribe();
-    this.testsService$.unsubscribe();
   }
 
 }

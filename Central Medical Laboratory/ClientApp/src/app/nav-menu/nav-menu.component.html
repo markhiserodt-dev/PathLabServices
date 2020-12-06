@@ -48,7 +48,7 @@
       <button class="user" *ngIf="user" mat-mini-fab>{{user.firstName[0]}}</button>
     </div>
 
-    <app-account *ngIf="displayAccount" [user]="user" (userEvent)=saveUser($event)></app-account>
+    <app-account *ngIf="displayAccount" [user]="user" (userEvent)=saveUser($event) (closeEvent)="closeAccountModal($event)"></app-account>
   </div>
 
 </div>
