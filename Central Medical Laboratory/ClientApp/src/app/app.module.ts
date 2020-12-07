@@ -17,6 +17,7 @@ import { GoogleMapComponent } from './google-map/google-map.component';
 import { ContactComponent } from './contact/contact.component';
 import { AccountComponent } from './account/account.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AddTestComponent } from './add-test/add-test.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -32,6 +33,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     GoogleMapComponent,
     ContactComponent,
     AccountComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AddTestComponent
   ],
   imports: [
     BrowserModule,
@@ -65,9 +68,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     AnimateModule,
     MatSidenavModule,
     ReactiveFormsModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddTestComponent]
 })
 export class AppModule { }

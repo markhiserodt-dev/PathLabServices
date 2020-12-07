@@ -53,7 +53,7 @@ namespace Central_Medical_Laboratory.Api.Controllers
             return searchResult;
         }
 
-        [HttpPost("addTest")]
+        [HttpPost("add")]
         public IActionResult addTest([FromBody] Test test)
         {
             _context.Tests.Add(test);

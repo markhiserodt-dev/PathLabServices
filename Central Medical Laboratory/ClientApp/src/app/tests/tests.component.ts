@@ -8,6 +8,8 @@ import { take, takeUntil } from 'rxjs/operators';
 import { SearchResponse } from '../models/search-response.model';
 import { SearchRequest } from '../models/search-request.model';
 import { BaseComponent } from '../shared/base-component';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { AddTestComponent } from '../add-test/add-test.component';
 
 @Component({
   selector: 'app-tests',
@@ -38,7 +40,7 @@ export class TestsComponent extends BaseComponent implements OnInit {
     searchText: '',                         // text received throught the route or user input
   };
 
-  constructor(private route: ActivatedRoute, private testsService: TestsService) {
+  constructor(private route: ActivatedRoute, private testsService: TestsService, private dialog: MatDialog) {
     super();
   }
 
@@ -104,6 +106,19 @@ export class TestsComponent extends BaseComponent implements OnInit {
     this.searchRequest.searchText = '';
     this.searchRequest.selectedLetter = '';
     this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
+  }
+
+  openAddTestDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(AddTestComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((test: Test) => {
+      if (test) {
+        this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
+      }
+    });
   }
 
   /*

@@ -1,0 +1,25 @@
+@import '../../styles';
+
+.add-test {
+
+  .content {
+    display: flex;
+
+    mat-form-field {
+      min-width: 100%;
+    }
+
+    .column-third {
+      padding: 0 3em 0 3em;
+    }
+
+    .column-border {
+      border-right: 1.5px dotted $divider-color;
+    }
+
+  }
+
+  .action-bar {
+    float: right;
+  }
+}

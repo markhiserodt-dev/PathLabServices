@@ -55,8 +55,8 @@
         </div>
         <mat-list><mat-divider></mat-divider></mat-list>
         <div class="options">
-          <button mat-button [ngClass]="{'login-valid' : loginForm.valid, 'login-invalid' : loginForm.invalid}" [disabled]="loginForm.invalid" (click)="login()">Sign In</button>
           <button mat-button [routerLink]="['/registration']" (click)="closeAccountModal()">Register</button>
+          <button mat-button [ngClass]="{'login-valid' : loginForm.valid, 'login-invalid' : loginForm.invalid}" [disabled]="loginForm.invalid" (click)="login()">Sign In</button>
         </div>
       </mat-card> 
     </form>

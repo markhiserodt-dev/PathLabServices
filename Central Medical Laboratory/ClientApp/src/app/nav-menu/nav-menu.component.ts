@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { Test, Tests } from '../models/test.model';
 import { User } from '../models/user.model';
+import { TestsService } from '../services/tests.service';
 import { BaseComponent } from '../shared/base-component';
 
 @Component({
@@ -18,7 +19,7 @@ export class NavMenuComponent extends BaseComponent implements OnInit {
   displayAccount: boolean = false;
   user: User;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private testsService: TestsService) {
     super();
   }
 
@@ -32,7 +33,7 @@ export class NavMenuComponent extends BaseComponent implements OnInit {
         this.menuPage = event.url;
 
         if (this.menuPage.indexOf('/test-detail') == 0) {
-          this.addRecentTest(+event.url.slice(this.menuPage.length));
+          this.addRecentTest(+event.url.slice(13));
         }
       }
     });
@@ -70,17 +71,20 @@ export class NavMenuComponent extends BaseComponent implements OnInit {
   }
 
   private addRecentTest(id: number) {
-    if (id >= 0 && id < Tests.length) {
-      let foundTest = this.recentTests.find((test: Test) => {
-        return test.id == id;
+    this.testsService.getTest(id).pipe(take(1)).subscribe((test: Test) => {
+      if (!test) {
+        return;
+      }
+      let foundTest: Test = this.recentTests.find((recentTest: Test) => {
+        return recentTest.id == test.id;
       });
       if (!foundTest) {
-        let length = this.recentTests.push(foundTest);
+        let length: number = this.recentTests.push(test);
         if (length > 5) {
           this.recentTests.splice(0, 1);
         }
       }
-    }
-    localStorage.setItem('recentTests', JSON.stringify(this.recentTests));
+      localStorage.setItem('recentTests', JSON.stringify(this.recentTests));
+    });
   }
 }

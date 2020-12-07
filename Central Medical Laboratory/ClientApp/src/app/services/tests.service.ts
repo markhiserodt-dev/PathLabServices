@@ -24,5 +24,9 @@ export class TestsService {
   searchTests(req: SearchRequest): Observable<SearchResponse> {
     return this.http.post<SearchResponse>(`${this.apiUrl}/tests/search`, req);
   }
+
+  addTest(test: Test): Observable<Test> {
+    return this.http.post<Test>(`${this.apiUrl}/tests/add`, test);
+  }
   
 }

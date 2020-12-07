@@ -1,0 +1,77 @@
+<div class="add-test">
+  <h2 mat-dialog-title>Add Test</h2>
+
+  <mat-dialog-content class="content" [formGroup]="testForm">
+    <div class="column-third column-border">
+      <mat-form-field>
+        <input matInput placeholder="Code" formControlName="code">
+        <mat-error>Code is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name">
+        <mat-error>Name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="CPT Code" formControlName="cptCode">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Preferred Requirement" formControlName="preferredRequirement">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Alternate Requirement" formControlName="alternateRequirement">
+      </mat-form-field>
+    </div>
+    <div class="column-third column-border">
+      <mat-form-field>
+        <input matInput placeholder="Minimum Volume" formControlName="minimumVolume">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Transport Temp" formControlName="transportTemp">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="TAT" formControlName="tat">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Methodology" formControlName="methodology">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Days Performed" formControlName="daysPerformed">
+      </mat-form-field>
+    </div>
+    <div class="column-third">
+      <mat-form-field>
+        <input matInput placeholder="Special Instructions" formControlName="specialInstructions">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Comments" formControlName="comments">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Test Included" formControlName="testIncluded">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Performing Lab" formControlName="performingLab">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Clinical Significance" formControlName="clinicalSignificance">
+      </mat-form-field>
+    </div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="action-bar">
+    <button mat-button (click)="close()">Close</button>
+    <button mat-button color="primary" (click)="addTest()" [disabled]="testForm.invalid">Add</button>
+  </mat-dialog-actions>
+</div>
