@@ -28,5 +28,9 @@ export class TestsService {
   addTest(test: Test): Observable<Test> {
     return this.http.post<Test>(`${this.apiUrl}/tests/add`, test);
   }
+
+  editTest(test: Test): Observable<Test> {
+    return this.http.post<Test>(`${this.apiUrl}/tests/edit`, test);
+  }
   
 }

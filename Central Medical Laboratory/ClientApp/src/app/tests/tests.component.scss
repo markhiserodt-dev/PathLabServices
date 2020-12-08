@@ -27,7 +27,7 @@
                 outline: none;
               }
 
-              .border-bottom {
+              .highlighted {
                 color: $accent-color;
               }
           }
@@ -85,18 +85,18 @@
         padding: 1em 0 0 2em;
         align-items: center;
 
-        .addTestButton {
-          background-color: $primary-color;
-          color: $primary-color-text;
-        }
-
-        .addTestModal {
+        .add-test {
           text-align: center;
           padding: 0 0 2em 0;
           color: $accent-color;
 
-          .mat-icon {
-            transform: scale(0.8);
+          button {
+            background-color: $primary-color;
+            color: $primary-color-text;
+
+            mat-icon {
+              transform: scale(0.8);
+            }
           }
         }
 

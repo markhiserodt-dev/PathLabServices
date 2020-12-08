@@ -9,7 +9,7 @@ import { SearchResponse } from '../models/search-response.model';
 import { SearchRequest } from '../models/search-request.model';
 import { BaseComponent } from '../shared/base-component';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { AddTestComponent } from '../add-test/add-test.component';
+import { TestDialogComponent } from '../test-dialog/test-dialog.component';
 
 @Component({
   selector: 'app-tests',
@@ -77,8 +77,8 @@ export class TestsComponent extends BaseComponent implements OnInit {
     Should set the pageEvent's pageIndex and pageSize, then perform a search
   */
   onPageChange(pageEvent: PageEvent) {
-    this.pageEvent.pageIndex = pageEvent.pageIndex;
-    this.pageEvent.pageSize = pageEvent.pageSize;
+    this.searchRequest.pageIndex = pageEvent.pageIndex;
+    this.searchRequest.pageSize = pageEvent.pageSize;
     this.doSearch();
   }
 
@@ -108,15 +108,21 @@ export class TestsComponent extends BaseComponent implements OnInit {
     this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
   }
 
-  openAddTestDialog() {
+  openTestDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id: 0,
+      title: 'Add Test'
+    }
 
-    const dialogRef = this.dialog.open(AddTestComponent, dialogConfig);
+    const dialogRef = this.dialog.open(TestDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe((test: Test) => {
       if (test) {
-        this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
+        this.testsService.addTest(test).pipe(take(1)).subscribe((resp: Test) => {
+          this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
+        });
       }
     });
   }

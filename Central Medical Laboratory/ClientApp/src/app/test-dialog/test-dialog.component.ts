@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
-import { take } from 'rxjs/operators';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Test } from '../models/test.model';
-import { TestsService } from '../services/tests.service';
 import { BaseComponent } from '../shared/base-component';
 
 @Component({
-  selector: 'app-add-test',
-  templateUrl: './add-test.component.html',
-  styleUrls: ['./add-test.component.scss']
+  selector: 'app-test-dialog',
+  templateUrl: './test-dialog.component.html',
+  styleUrls: ['./test-dialog.component.scss']
 })
-export class AddTestComponent extends BaseComponent implements OnInit {
+export class TestDialogComponent extends BaseComponent implements OnInit {
+
+  title: string;
+  id: number;
 
   testForm: FormGroup = new FormGroup({
     code: new FormControl(undefined || '', Validators.required),
@@ -31,17 +32,35 @@ export class AddTestComponent extends BaseComponent implements OnInit {
     clinicalSignificance: new FormControl('')
   });
 
-  constructor(private testsService: TestsService, private dialogRef: MatDialogRef<AddTestComponent>) {
+  constructor(private dialogRef: MatDialogRef<TestDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
     super();
+    this.title = data.title;
+    this.id = data.id;
+    if (data.test) {
+      this.testForm.get('code').setValue(data.test.code);
+      this.testForm.get('name').setValue(data.test.name);
+      this.testForm.get('cptCode').setValue(data.test.cptCode);
+      this.testForm.get('preferredRequirement').setValue(data.test.preferredRequirement);
+      this.testForm.get('alternateRequirement').setValue(data.test.alternateRequirement);
+      this.testForm.get('minimumVolume').setValue(data.test.minimumVolume);
+      this.testForm.get('transportTemp').setValue(data.test.transportTemp);
+      this.testForm.get('tat').setValue(data.test.tat);
+      this.testForm.get('methodology').setValue(data.test.methodology);
+      this.testForm.get('daysPerformed').setValue(data.test.daysPerformed);
+      this.testForm.get('specialInstructions').setValue(data.test.specialInstructions);
+      this.testForm.get('comments').setValue(data.test.comments);
+      this.testForm.get('testIncluded').setValue(data.test.testIncluded);
+      this.testForm.get('performingLab').setValue(data.test.performingLab);
+      this.testForm.get('clinicalSignificance').setValue(data.test.clinicalSignificance);
+    }
   }
 
   ngOnInit() {
-    
   }
 
-  addTest() {
+  save() {
     const test: Test = {
-      id: 0,
+      id: this.id,
       code: +this.testForm.get('code').value,
       name: this.testForm.get('name').value,
       cptCode: +this.testForm.get('cptCode').value,
@@ -59,9 +78,7 @@ export class AddTestComponent extends BaseComponent implements OnInit {
       clinicalSignificance: this.testForm.get('clinicalSignificance').value
     };
 
-    this.testsService.addTest(test).pipe(take(1)).subscribe((test: Test) => {
-      this.dialogRef.close(test);
-    });
+    this.dialogRef.close(test);
   }
 
   close() {

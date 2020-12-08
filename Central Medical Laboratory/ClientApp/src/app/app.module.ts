@@ -17,7 +17,7 @@ import { GoogleMapComponent } from './google-map/google-map.component';
 import { ContactComponent } from './contact/contact.component';
 import { AccountComponent } from './account/account.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { AddTestComponent } from './add-test/add-test.component';
+import { TestDialogComponent } from './test-dialog/test-dialog.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -48,7 +48,7 @@ import { MatDialogModule } from '@angular/material';
     ContactComponent,
     AccountComponent,
     RegistrationComponent,
-    AddTestComponent
+    TestDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +73,6 @@ import { MatDialogModule } from '@angular/material';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AddTestComponent]
+  entryComponents: [TestDialogComponent]
 })
 export class AppModule { }

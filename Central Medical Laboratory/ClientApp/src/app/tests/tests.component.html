@@ -8,7 +8,7 @@
     <div class="results-container">
       <div class="filter-container">
         <div class="alphabet-list">
-          <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'border-bottom' : letter==searchRequest.selectedLetter}">{{letter}}</button>
+          <button mat-button *ngFor="let letter of alphabet" (click)="onLetterClick(letter)" [ngClass]="{'highlighted' : letter==searchRequest.selectedLetter}">{{letter}}</button>
         </div>
         <button mat-button class="filter-button" *ngIf="searchRequest.searchText || searchRequest.selectedLetter" (click)="clearFilter()">clear filter<mat-icon class="mat-icon" color="warn">clear</mat-icon></button>
       </div>
@@ -41,8 +41,8 @@
     </div>
 
     <div class="info">
-      <div class="addTestModal">
-        <button mat-button class="addTestButton" (click)="openAddTestDialog()"><mat-icon>add</mat-icon>Add Test</button>
+      <div class="add-test">
+        <button mat-button (click)="openTestDialog()"><mat-icon>add</mat-icon>Add Test</button>
       </div>
       <mat-card>
         <h6>Info</h6>
@@ -53,5 +53,3 @@
   </div>
 
 </div>
-
-<app-add-test *ngIf="addTestModal"></app-add-test>

@@ -2,6 +2,7 @@
 using Central_Medical_Laboratory.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,9 +55,17 @@ namespace Central_Medical_Laboratory.Api.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult addTest([FromBody] Test test)
+        public IActionResult AddTest([FromBody] Test test)
         {
             _context.Tests.Add(test);
+            _context.SaveChanges();
+            return Ok(test);
+        }
+
+        [HttpPost("edit")]
+        public IActionResult EditTest([FromBody] Test test)
+        {
+            _context.Entry(test).State = EntityState.Modified;
             _context.SaveChanges();
             return Ok(test);
         }

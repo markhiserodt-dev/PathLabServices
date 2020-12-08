@@ -1,5 +1,5 @@
 <div class="add-test">
-  <h2 mat-dialog-title>Add Test</h2>
+  <h2 mat-dialog-title>{{title}}</h2>
 
   <mat-dialog-content class="content" [formGroup]="testForm">
     <div class="column-third column-border">
@@ -72,6 +72,6 @@
 
   <mat-dialog-actions class="action-bar">
     <button mat-button (click)="close()">Close</button>
-    <button mat-button color="primary" (click)="addTest()" [disabled]="testForm.invalid">Add</button>
+    <button mat-button color="primary" (click)="save()" [disabled]="testForm.invalid">Save</button>
   </mat-dialog-actions>
 </div>

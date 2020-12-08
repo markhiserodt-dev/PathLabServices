@@ -22,7 +22,22 @@
 
     .info {
       width: 25%;
-      padding: 3em 0 0 2em;
+      padding: 1em 0 0 2em;
+
+      .edit-test {
+        text-align: center;
+        padding: 0 0 2em 0;
+        color: $accent-color;
+
+        button {
+          background-color: $primary-color;
+          color: $primary-color-text;
+
+          mat-icon {
+            transform: scale(0.8);
+          }
+        }
+      }
 
       h6 {
         text-align: center;
