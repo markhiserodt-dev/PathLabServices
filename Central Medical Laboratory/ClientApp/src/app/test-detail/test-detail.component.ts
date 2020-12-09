@@ -6,6 +6,8 @@ import { take, takeUntil } from 'rxjs/operators';
 import { BaseComponent } from '../shared/base-component';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TestDialogComponent } from '../test-dialog/test-dialog.component';
+import { User } from '../models/user.model';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-test-detail',
@@ -15,10 +17,12 @@ import { TestDialogComponent } from '../test-dialog/test-dialog.component';
 export class TestDetailComponent extends BaseComponent implements OnInit {
 
   test: Test;
+  user: User;
 
   constructor(private route: ActivatedRoute, 
               private testsService: TestsService, 
-              private dialog: MatDialog ) {
+              private dialog: MatDialog,
+              private accountService: AccountService ) {
     super();
   }
 
@@ -30,6 +34,10 @@ export class TestDetailComponent extends BaseComponent implements OnInit {
           this.test = test;
         });
       }
+    });
+
+    this.accountService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe((user: User) => {
+      this.user = user;
     });
   }
 

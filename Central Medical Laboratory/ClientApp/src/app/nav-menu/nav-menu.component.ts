@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router';
 import { take, takeUntil } from 'rxjs/operators';
-import { Test, Tests } from '../models/test.model';
+import { Test } from '../models/test.model';
 import { User } from '../models/user.model';
+import { AccountService } from '../services/account.service';
 import { TestsService } from '../services/tests.service';
 import { BaseComponent } from '../shared/base-component';
 
@@ -19,7 +19,7 @@ export class NavMenuComponent extends BaseComponent implements OnInit {
   displayAccount: boolean = false;
   user: User;
 
-  constructor(private router: Router, private testsService: TestsService) {
+  constructor(private router: Router, private testsService: TestsService, private accountService: AccountService) {
     super();
   }
 
@@ -37,6 +37,10 @@ export class NavMenuComponent extends BaseComponent implements OnInit {
         }
       }
     });
+
+    this.accountService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe((user: User) => {
+      this.user = user;
+    });
   }
 
   onSearchClick() {
@@ -45,10 +49,6 @@ export class NavMenuComponent extends BaseComponent implements OnInit {
     } else {
       this.router.navigate(['/tests']);
     }
-  }
-
-  saveUser(event: User) {
-    this.user = event;
   }
 
   closeAccountModal(event: boolean) {

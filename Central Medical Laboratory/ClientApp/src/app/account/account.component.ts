@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { AccountService } from '../services/account.service';
 import { User } from '../models/user.model';
 import { UserCredentials } from '../models/user-credentials.model';
-import { take } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BaseComponent } from '../shared/base-component';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -33,6 +33,9 @@ export class AccountComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.accountService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe((user: User) => {
+      this.user = user;
+    });
   }
 
   login() {
@@ -46,8 +49,6 @@ export class AccountComponent extends BaseComponent implements OnInit {
     this.accountService.login(userCredentials).pipe(take(1)).subscribe(
       (user: User) => {
         if (user) {
-          this.user = user;
-          this.userEvent.emit(user);
         }
       },
       (error: HttpErrorResponse) => {
@@ -59,12 +60,8 @@ export class AccountComponent extends BaseComponent implements OnInit {
   }
 
   logout() {
-    this.user = undefined;
-    this.loginForm.get('email').setValue('')
-    this.loginForm.get('email').setErrors(null),
-    this.loginForm.get('password').setValue('');
-    this.loginForm.get('password').setErrors(null),
-    this.userEvent.emit(undefined);
+    this.resetForm(this.loginForm);
+    this.accountService.logout();
   }
 
   clearEmail() {

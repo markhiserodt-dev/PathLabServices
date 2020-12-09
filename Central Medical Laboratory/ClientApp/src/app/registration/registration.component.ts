@@ -45,10 +45,11 @@ export class RegistrationComponent extends BaseComponent implements OnInit {
       firstName: this.registrationForm.get('firstName').value,
       lastName: this.registrationForm.get('lastName').value,
       email: this.registrationForm.get('email').value,
-      password: this.registrationForm.get('password').value
+      password: this.registrationForm.get('password').value,
+      isAdmin: false,
     }
     this.accountService.register(user).pipe(take(1)).subscribe((user: User) => {
-      this.resetRegistrationForm(this.registrationForm);
+      this.resetForm(this.registrationForm);
     });
   }
 
@@ -87,28 +88,6 @@ export class RegistrationComponent extends BaseComponent implements OnInit {
     } else {
       return '';
     }
-  }
-
-  private resetRegistrationForm(group: FormGroup): void {
-
-    Object.keys(group.controls).forEach((key: string) => {
-
-      // Get a reference to the control using the FormGroup.get() method
-      const abstractControl = group.get(key);
-
-      // If the control is an instance of FormGroup i.e a nested FormGroup
-      // then recursively call this same method (resetRegistrationForm) passing it
-      // the FormGroup so we can get to the form controls in it
-
-      if (abstractControl instanceof FormGroup) {
-        this.resetRegistrationForm(abstractControl);
-      } else {
-        // If the control is not a FormGroup then we know it's a FormControl
-        abstractControl.setValue('');
-        abstractControl.setErrors(null);
-      }
-
-    });
   }
 
 }

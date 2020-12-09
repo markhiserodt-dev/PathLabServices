@@ -10,6 +10,8 @@ import { SearchRequest } from '../models/search-request.model';
 import { BaseComponent } from '../shared/base-component';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { TestDialogComponent } from '../test-dialog/test-dialog.component';
+import { AccountService } from '../services/account.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-tests',
@@ -40,10 +42,12 @@ export class TestsComponent extends BaseComponent implements OnInit {
     searchText: '',                         // text received throught the route or user input
   };
 
-  constructor(private route: ActivatedRoute, private testsService: TestsService, private dialog: MatDialog) {
+  user: User;
+
+  constructor(private route: ActivatedRoute, private testsService: TestsService, private dialog: MatDialog, private accountService: AccountService) {
     super();
   }
-
+  
   /*
     Should subscribe to the route parameters and call an initial search through a pageChange
   */
@@ -55,6 +59,10 @@ export class TestsComponent extends BaseComponent implements OnInit {
         this.searchRequest.searchText = params['search'].toLowerCase();
       }
       this.onPageChange({pageSize: this.pageEvent.pageSize, pageIndex: 0, length: 0})
+    });
+
+    this.accountService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe((user: User) => {
+      this.user = user;
     });
   }
 

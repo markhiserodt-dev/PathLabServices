@@ -4,14 +4,16 @@ using Central_Medical_Laboratory.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Central_Medical_Laboratory.Migrations
 {
     [DbContext(typeof(PathLabServicesContext))]
-    partial class PathLabServicesContextModelSnapshot : ModelSnapshot
+    [Migration("20201208221538_userAdmins")]
+    partial class userAdmins
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

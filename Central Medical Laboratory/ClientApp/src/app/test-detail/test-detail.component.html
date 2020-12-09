@@ -91,7 +91,7 @@
 
     <div class="info">
       <div class="edit-test">
-        <button mat-button (click)="openTestDialog()"><mat-icon>edit</mat-icon>Edit Test</button>
+        <button mat-button (click)="openTestDialog()" *ngIf="user && user.isAdmin" ><mat-icon>edit</mat-icon>Edit Test</button>
       </div>
       <mat-card>
         <h6>Info</h6>
