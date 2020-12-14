@@ -49,6 +49,7 @@ export class AccountComponent extends BaseComponent implements OnInit {
     this.accountService.login(userCredentials).pipe(take(1)).subscribe(
       (user: User) => {
         if (user) {
+          this.closeAccountModal();
         }
       },
       (error: HttpErrorResponse) => {

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44335/api'
+  apiUrl: 'https://pathlabservices.azurewebsites.net/api'
 };
 
 /*

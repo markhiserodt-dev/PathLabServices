@@ -30,7 +30,7 @@ export class AppComponent extends BaseComponent {
     });
   }
 
-  onActivate() {
+  onActivate(event: any) {
     this.animationState = this.route.firstChild.snapshot.data['routeIdx'];
   }
 }

@@ -4,8 +4,10 @@ import { PasswordValidator } from '../shared/password-validator.directive';
 import { PasswordMatchValidator } from '../shared/password-match-validator.directive';
 import { AccountService } from '../services/account.service';
 import { User } from '../models/user.model';
-import { take } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { BaseComponent } from '../shared/base-component';
+import { UserCredentials } from '../models/user-credentials.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -32,12 +34,11 @@ export class RegistrationComponent extends BaseComponent implements OnInit {
   hide: boolean = true;
   showPasswordHint: boolean = false;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private router: Router) {
     super();
   }
 
   ngOnInit() {
-
   }
 
   onSubmit() {
@@ -49,7 +50,16 @@ export class RegistrationComponent extends BaseComponent implements OnInit {
       isAdmin: false,
     }
     this.accountService.register(user).pipe(take(1)).subscribe((user: User) => {
-      this.resetForm(this.registrationForm);
+      if (user) {
+        this.resetForm(this.registrationForm);
+        const userCredentials: UserCredentials = {
+          email: user.email,
+          password: user.password
+        }
+        this.accountService.login(userCredentials).pipe(take(1)).subscribe((resp: User) => {
+          this.router.navigate(['/home']);
+        });
+      }
     });
   }
 
