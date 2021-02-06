@@ -4,15 +4,15 @@
     width: 100%;
 
     .featured {
-      height: 550px;
-      background-image: url('../../assets/wide-chains.jpg');
+      height: 500px;
+      background-color: $primary-color-dark;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
 
       .title {
-        color: $primary-text-color;
+        color: $primary-color-text;
         line-height: 7em;
 
         h1 {
@@ -24,58 +24,48 @@
           font-size: 1.1em;
           font-weight: 300;
         }
+
+        button {
+          background-color: $primary-color-text;
+          color: $primary-text-color;
+          transition: 0.7s;
+        }
+
+        button:hover {
+          background-color: $accent-color;
+          transition: 0.7s;
+        }
       }
     }
 
     .content {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
 
-      .homepage-row {
-        display: flex;
-        height: 300px;
-        background-image: url('../../assets/wide-chains.jpg');
-        justify-content: flex-end;
+      .description {
+        width: 33%;
+        padding-top: 5em;
+        height: 320px;
+        border-bottom: 1px solid $divider-color;
+        line-height: 7em;
 
-        .homepage-info {
-          width: 57%;
-          display: flex;
-
-          div {
-            color: $secondary-text-color;
-            width: 65%;
-
-            button {
-              background-color: $primary-color-dark;
-              color: $primary-color-text;
-              margin-left: 25%;
-              margin-top: 1em;
-            }
-          }
+        h1 {
+          font-size: 2em;
+          font-weight: 300;
         }
+
+        h2 {
+          font-size: 1.1em;
+          font-weight: 300;
+        }
+
       }
     }
+
 }
 
 @media only screen and (max-width: 768px) {
-
-  .content {
-    margin: 0 4em !important;
-
-    .homepage-row {
-      height: 250px !important;
-
-      .homepage-info {
-        width: 100% !important;
-
-        div {
-          width: 100% !important;
-          text-align: center !important;
-
-          button {
-            margin: 0 !important;
-          }
-        }
-
-      }
-    }
-  }
 }
