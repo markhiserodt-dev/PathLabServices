@@ -37,13 +37,13 @@
     </div>
 
     <div class="info">
-      <div class="add-test">
-        <button mat-button (click)="openTestDialog()" *ngIf="user && user.isAdmin"><mat-icon>add</mat-icon>Add Test</button>
-      </div>
       <mat-card>
         <h6>Info</h6>
         <p>We offer an extensive array of tests in order to meet your needs.</p>
         <p>Our tests are of the highest caliber and deliver the bests results, every time. Simply search for the test to get more details about it.</p>
+        <div class="add-test">
+          <button mat-button (click)="openTestDialog()" *ngIf="user && user.isAdmin"><mat-icon>add</mat-icon>Add Test</button>
+        </div>
       </mat-card>
     </div>
 

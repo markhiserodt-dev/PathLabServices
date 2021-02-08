@@ -2,6 +2,12 @@
 
 .test-detail {
     width: 100%;
+    min-height: 1050px;
+    padding-top: 70px;
+    background-image: url('../../assets/plant_right.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     .detail-container {
       width: 75%;
@@ -21,12 +27,12 @@
     }
 
     .info {
-      width: 25%;
-      padding: 1em 0 0 2em;
+      width: 27%;
+      padding: 0 0 0 3em;
 
       .edit-test {
         text-align: center;
-        padding: 0 0 2em 0;
+        padding: 1em 0 1em 0;
         color: $accent-color;
 
         button {

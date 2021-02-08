@@ -1,9 +1,5 @@
 <div class="test-detail">
 
-  <div class="header">
-    <h4>Test Details</h4>
-  </div>
-
   <div class="body flex">
     <div class="detail-container">
       <h4>{{test?.name}}</h4>
@@ -90,12 +86,12 @@
     </div>
 
     <div class="info">
-      <div class="edit-test">
-        <button mat-button (click)="openTestDialog()" *ngIf="user && user.isAdmin" ><mat-icon>edit</mat-icon>Edit Test</button>
-      </div>
       <mat-card>
         <h6>Info</h6>
         <p>This page contains all info pertaining to a test. If you need to edit the test, log in as an admin and modify the test.</p>
+        <div class="edit-test">
+          <button mat-button (click)="openTestDialog()" *ngIf="user && user.isAdmin" ><mat-icon>edit</mat-icon>Edit Test</button>
+        </div>
       </mat-card>
     </div>
   </div>

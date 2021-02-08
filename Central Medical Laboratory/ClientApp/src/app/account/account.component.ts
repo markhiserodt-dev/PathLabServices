@@ -23,9 +23,8 @@ export class AccountComponent extends BaseComponent implements OnInit {
 
   passwordHidden: boolean = true;
   loginErrorMessage: string = '';
+  user: User;
 
-  @Input() user: User;
-  @Output() userEvent = new EventEmitter<User>();
   @Output() closeEvent = new EventEmitter<Boolean>();
 
   constructor(private accountService: AccountService) {
