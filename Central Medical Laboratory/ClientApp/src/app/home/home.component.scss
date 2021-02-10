@@ -62,13 +62,13 @@
 
         .description {
           width: 50%;
-          text-align: center;
-          line-height: 4em;
+          line-height: 5em;
           padding: 2em;
 
           h1 {
-            font-size: 2.5em;
-            font-weight: 300;
+            font-size: 3em;
+            font-weight: 400;
+            padding-bottom: 0.3em;
           }
   
           h2 {
@@ -77,12 +77,17 @@
           }
 
           button {
-            text-decoration: underline;
+            width: 18em;
+            border-radius: 1em;
           }
         }
 
         .margined-top {
           margin-top: 5em;
+        }
+
+        .right-align {
+          text-align: right;
         }
 
       }
@@ -108,8 +113,24 @@
         background-size: cover;
       }
 
-      .other-color {
-        background-color: #eaedcc;
+      .brown-red {
+        background-color: #912621;
+        color: $primary-color-text;
+      }
+
+      .lightsteelblue {
+        background-color: #a4c6c8;
+        color: $primary-color-text;
+      }
+
+      .gold {
+        background-color: #f1cc00;
+        color: $primary-text-color;
+      }
+
+      .indian-red {
+        background-color: #d1694d;
+        color: $primary-color-text;
       }
     }
 

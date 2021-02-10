@@ -4,6 +4,8 @@
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
 
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -39,6 +41,8 @@ $primary-text-color: #212121;
 $secondary-text-color: #757575;
 $divider-color: #bdbdbd;
 
+$font-family: 'Muli';
+
 body {
   width: 100%;
 }
@@ -73,11 +77,23 @@ img:focus {
 html, body {
   margin: 0;
   height: 100%;
+  font-family: $font-family !important;
 }
 
 ::ng-deep {
   button:focus {
     outline: none;
+  }
+  button {
+    font-family: $font-family !important;
+  }
+
+  mat-form-field {
+    font-family: $font-family !important;
+  }
+
+  mat-card {
+    font-family: $font-family !important;
   }
 }
 
