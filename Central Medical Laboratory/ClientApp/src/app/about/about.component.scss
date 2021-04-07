@@ -8,29 +8,38 @@
 
   .about-row {
     width: 100%;
-    height: 400px;
+    height: fit-content;
     display: flex;
+    padding: 2em 0 2em 0;
 
     .about-info {
-      width: 66%;
-      padding: 0 1em 0 1em;
+      width: 60%;
+      padding: 0 2em 0 2em;
     }
 
     .about-learn {
-      width: 33%;
-      padding: 2em 1em 0 1em;
-
-      h6 {
-          text-align: center;
-      }
+      width: 40%;
+      align-items: center;
+      justify-content: center;
+      display: flex;
 
       img {
-        height: 260px;
-        width: 320px;
+        height: 100%;
+        width: 50%;
       }
     }
   }
 }
 
 @media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 1800px) {
+  .about-learn {
+
+    img {
+      height: 85% !important;
+      width: 90% !important;
+    }
+  }
 }

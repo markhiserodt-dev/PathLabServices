@@ -95,6 +95,10 @@ html, body {
   mat-card {
     font-family: $font-family !important;
   }
+
+  mat-list-item {
+    font-family: $font-family !important;
+  }
 }
 
 @media only screen and (max-width: 768px) {
